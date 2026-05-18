@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;600&family=Inter:wght@300;400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #0a0a0a;
+  color: #f0ead6;
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+#root {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  text-align: left;
+  border: none;
+  min-height: 100svh;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #c9a84c, #a8892f);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #d4af37, #c9a84c);
+}
+
+/* Selection */
+::selection {
+  background-color: #c9a84c;
+  color: #0a0a0a;
+}
+
+/* Utility classes */
+.gradient-text {
+  background: linear-gradient(135deg, #c9a84c 0%, #f5e6c8 50%, #c9a84c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.glass {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+}
+
+.gold-line {
+  height: 1px;
+  background: linear-gradient(to right, transparent, #c9a84c, #d4af37, #c9a84c, transparent);
+  border: none;
+}
+
+/* Ambient background pattern */
+.ambient-bg {
+  background-image:
+    radial-gradient(ellipse at 20% 50%, rgba(123, 45, 61, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(201, 168, 76, 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 80%, rgba(123, 45, 61, 0.05) 0%, transparent 50%);
+}
+
+/* Ken Burns animation */
+@keyframes kenburns {
+  0% { transform: scale(1.0) translateX(0px) translateY(0px); }
+  25% { transform: scale(1.08) translateX(-10px) translateY(-5px); }
+  50% { transform: scale(1.12) translateX(-20px) translateY(10px); }
+  75% { transform: scale(1.08) translateX(10px) translateY(5px); }
+  100% { transform: scale(1.0) translateX(0px) translateY(0px); }
+}
+
+.kenburns-animate {
+  animation: kenburns 20s ease-in-out infinite;
+}
+
+/* Scroll indicator bounce */
+@keyframes bounce-subtle {
+  0%, 100% { transform: translateY(0); opacity: 1; }
+  50% { transform: translateY(8px); opacity: 0.5; }
+}
+
+.bounce-subtle {
+  animation: bounce-subtle 2s ease-in-out infinite;
+}
+
+/* Corner ornaments */
+.corner-ornament::before,
+.corner-ornament::after {
+  content: '';
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border-color: #c9a84c;
+  border-style: solid;
+}
+.corner-ornament::before {
+  top: 12px;
+  left: 12px;
+  border-width: 1px 0 0 1px;
+}
+.corner-ornament::after {
+  bottom: 12px;
+  right: 12px;
+  border-width: 0 1px 1px 0;
+}
+
+/* Card hover glow */
+.card-glow:hover {
+  box-shadow: 0 0 30px rgba(201, 168, 76, 0.25), 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+/* Shimmer button effect */
+.shimmer-btn {
+  background: linear-gradient(
+    90deg,
+    #c9a84c 0%,
+    #d4af37 25%,
+    #f5e6c8 50%,
+    #d4af37 75%,
+    #c9a84c 100%
+  );
+  background-size: 200% auto;
+  transition: background-position 0.5s ease, transform 0.2s ease;
+}
+.shimmer-btn:hover {
+  background-position: right center;
+  transform: translateY(-2px);
+}
