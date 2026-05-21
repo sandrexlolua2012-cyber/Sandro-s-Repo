@@ -90,39 +90,12 @@ export default function Dishes() {
               className="group relative flex flex-col overflow-hidden cursor-default"
               style={{ borderRadius: '2px' }}
             >
-              {/* Visual block */}
-              <div className="relative h-52 overflow-hidden" style={{ background: dish.gradient }}>
-                {/* Texture overlay */}
-                <div className="absolute inset-0 opacity-30"
-                  style={{ background: 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'200\' height=\'200\'%3E%3Cfilter id=\'n\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.85\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'200\' height=\'200\' filter=\'url(%23n)\' opacity=\'1\'/%3E%3C/svg%3E") repeat' }} />
-                {/* Accent orb */}
-                <motion.div
-                  animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
-                  transition={{ duration: 4, repeat: Infinity, delay: i * 0.3 }}
-                  className="absolute bottom-0 right-0 w-32 h-32 rounded-full"
-                  style={{ background: `radial-gradient(circle, ${dish.accent}55 0%, transparent 70%)`, filter: 'blur(20px)' }}
-                />
-                {/* Tag */}
-                <div className="absolute top-4 left-4">
-                  <span className="text-[9px] tracking-widest uppercase font-sans px-3 py-1.5 border"
-                    style={{ borderColor: `${dish.accent}60`, color: dish.accent, background: `${dish.accent}15` }}>
-                    {dish.tag}
-                  </span>
-                </div>
-                {/* Hover overlay */}
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  whileHover={{ opacity: 1 }}
-                  transition={{ duration: 0.3 }}
-                  className="absolute inset-0 flex items-center justify-center"
-                  style={{ background: 'rgba(0,0,0,0.5)', backdropFilter: 'blur(4px)' }}
-                >
-                  <span className="text-[10px] tracking-widest uppercase text-cream-200 font-sans border-b border-cream-200 pb-1">View Details</span>
-                </motion.div>
-              </div>
-
               {/* Content */}
               <div className="flex-1 flex flex-col gap-3 p-5 bg-charcoal-700 border border-white/5 group-hover:border-gold-700/30 transition-colors duration-500">
+                <span className="self-start text-[9px] tracking-widest uppercase font-sans px-3 py-1.5 border"
+                  style={{ borderColor: `${dish.accent}60`, color: dish.accent, background: `${dish.accent}15` }}>
+                  {dish.tag}
+                </span>
                 <h3 className="font-serif text-xl font-light text-cream-100 leading-tight group-hover:text-gold-300 transition-colors duration-300">
                   {dish.name}
                 </h3>

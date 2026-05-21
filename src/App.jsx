@@ -6,7 +6,6 @@ import About from './components/About'
 import Dishes from './components/Dishes'
 import Experience from './components/Experience'
 import Reviews from './components/Reviews'
-import Gallery from './components/Gallery'
 import Reservation from './components/Reservation'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
@@ -64,7 +63,6 @@ export default function App() {
             <Dishes />
             <Experience />
             <Reviews />
-            <Gallery />
             <Reservation />
             <Contact />
           </main>
