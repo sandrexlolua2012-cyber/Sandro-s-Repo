@@ -53,49 +53,29 @@ export default function Experience() {
           <div className="divider-gold w-full mt-8" />
         </motion.div>
 
-        {/* Alternating feature rows */}
+        {/* Feature rows */}
         <div className="flex flex-col gap-8">
           {features.map((f, i) => (
             <motion.div
               key={f.num}
-              initial={{ opacity: 0, x: i % 2 === 0 ? -40 : 40 }}
+              initial={{ opacity: 0, x: -40 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.9, delay: 0.1 }}
-              className={`grid md:grid-cols-2 gap-8 items-stretch ${i % 2 === 1 ? 'direction-rtl' : ''}`}
-              style={{ direction: i % 2 === 1 ? 'rtl' : 'ltr' }}
+              className="flex flex-col gap-6 py-6 border-b border-white/5"
             >
-              {/* Visual */}
-              <div
-                className="relative min-h-[280px] md:min-h-[320px] overflow-hidden"
-                style={{ background: f.visual, direction: 'ltr' }}
-              >
-                {/* Texture */}
-                <div className="absolute inset-0 opacity-20"
-                  style={{ background: 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'200\' height=\'200\'%3E%3Cfilter id=\'n\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.75\' numOctaves=\'4\'/%3E%3C/filter%3E%3Crect width=\'200\' height=\'200\' filter=\'url(%23n)\'/%3E%3C/svg%3E")' }} />
-                {/* Number watermark */}
-                <span className="absolute bottom-4 right-6 font-serif text-7xl font-light select-none"
-                  style={{ color: 'rgba(255,255,255,0.06)', lineHeight: 1 }}>
-                  {f.num}
-                </span>
-                {/* Tags */}
-                <div className="absolute bottom-6 left-6 flex flex-wrap gap-2">
-                  {f.tags.map(t => (
-                    <span key={t} className="text-[9px] tracking-widest uppercase font-sans px-3 py-1 border border-gold-700/40 text-gold-500 bg-black/20">
-                      {t}
-                    </span>
-                  ))}
-                </div>
+              <div className="flex items-center gap-4">
+                <span className="font-serif text-5xl font-light text-gold-700 leading-none">{f.num}</span>
+                <div className="divider-gold flex-1" />
               </div>
-
-              {/* Text */}
-              <div className="flex flex-col justify-center gap-6 py-6 md:px-8" style={{ direction: 'ltr' }}>
-                <div className="flex items-center gap-4">
-                  <span className="font-serif text-5xl font-light text-gold-700 leading-none">{f.num}</span>
-                  <div className="divider-gold flex-1" />
-                </div>
-                <h3 className="font-serif text-3xl md:text-4xl font-light text-cream-100">{f.title}</h3>
-                <p className="font-sans font-light text-cream-400 text-[14px] leading-8">{f.text}</p>
+              <h3 className="font-serif text-3xl md:text-4xl font-light text-cream-100">{f.title}</h3>
+              <p className="font-sans font-light text-cream-400 text-[14px] leading-8">{f.text}</p>
+              <div className="flex flex-wrap gap-2">
+                {f.tags.map(t => (
+                  <span key={t} className="text-[9px] tracking-widest uppercase font-sans px-3 py-1 border border-gold-700/40 text-gold-500">
+                    {t}
+                  </span>
+                ))}
               </div>
             </motion.div>
           ))}
