@@ -38,13 +38,13 @@ export default function Contact() {
   ]
 
   return (
-    <section id="contact" className="py-32 md:py-44 overflow-hidden" style={{ background: '#080f06' }}>
+    <section id="contact" className="py-16 md:py-24 overflow-hidden" style={{ background: '#faf8f5' }}>
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }} transition={{ duration: 0.9 }}
-          className="mb-16"
+          className="mb-12"
         >
           <span className={`section-label ${ss}`}>{ct.label}</span>
           <h2 className={`section-title mt-4 mb-4 ${sf}`}>{ct.heading}</h2>
@@ -68,18 +68,18 @@ export default function Contact() {
                   >
                     <span className="text-gold-500 group-hover:text-gold-400 transition-colors duration-300">{item.icon}</span>
                     <div>
-                      <p className={`text-[9px] tracking-widest uppercase text-cream-400 ${ss} mb-2`}>{item.label}</p>
-                      <p className={`${sf} text-lg text-cream-100 group-hover:text-gold-300 transition-colors duration-300`}>{item.value}</p>
-                      <p className={`${ss} text-[12px] text-cream-400 font-light mt-1`}>{item.sub}</p>
+                      <p className={`text-[9px] tracking-widest uppercase text-gold-500 ${ss} mb-2`}>{item.label}</p>
+                      <p className={`${sf} text-lg text-charcoal-900 group-hover:text-gold-600 transition-colors duration-300`}>{item.value}</p>
+                      <p className={`${ss} text-[12px] font-light mt-1`} style={{ color: '#6b5d4a' }}>{item.sub}</p>
                     </div>
                   </a>
                 ) : (
                   <div className="flex flex-col gap-4 p-7 glass h-full">
                     <span className="text-gold-500">{item.icon}</span>
                     <div>
-                      <p className={`text-[9px] tracking-widest uppercase text-cream-400 ${ss} mb-2`}>{item.label}</p>
-                      <p className={`${sf} text-lg text-cream-100`}>{item.value}</p>
-                      <p className={`${ss} text-[12px] text-cream-400 font-light mt-1`}>{item.sub}</p>
+                      <p className={`text-[9px] tracking-widest uppercase text-gold-500 ${ss} mb-2`}>{item.label}</p>
+                      <p className={`${sf} text-lg text-charcoal-900`}>{item.value}</p>
+                      <p className={`${ss} text-[12px] font-light mt-1`} style={{ color: '#6b5d4a' }}>{item.sub}</p>
                     </div>
                   </div>
                 )}
@@ -101,7 +101,7 @@ export default function Contact() {
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2977.8!2d44.7970!3d41.6940!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40440cdd9e3cf8a1%3A0x0!2s24+Mikheil+Zandukeli+St%2C+Tbilisi!5e0!3m2!1sen!2sge!4v1699000000000!5m2!1sen!2sge"
               width="100%"
               height="100%"
-              style={{ border: 0, filter: 'grayscale(100%) invert(92%) contrast(90%) brightness(0.7)' }}
+              style={{ border: 0, filter: 'grayscale(100%) contrast(85%) brightness(1.05)' }}
               allowFullScreen=""
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"

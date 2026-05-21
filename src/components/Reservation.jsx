@@ -23,25 +23,21 @@ export default function Reservation() {
     setSent(true)
   }
 
-  const inputClass = `w-full bg-transparent border-b border-white/10 focus:border-gold-500 text-cream-100 font-sans font-light text-[14px] py-3 px-0 outline-none transition-colors duration-300 placeholder:text-cream-400/40`
+  const inputClass = `w-full bg-transparent border-b focus:border-gold-500 font-sans font-light text-[14px] py-3 px-0 outline-none transition-colors duration-300 placeholder:text-charcoal-900/30`
 
   return (
-    <section id="reservation" className="relative py-32 md:py-44 overflow-hidden" style={{ background: '#050e18' }}>
-      {/* Ambient glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] rounded-full pointer-events-none"
-        style={{ background: 'radial-gradient(ellipse, rgba(201,168,76,0.06) 0%, transparent 70%)', filter: 'blur(60px)' }} />
-
+    <section id="reservation" className="relative py-16 md:py-24 overflow-hidden" style={{ background: '#ffffff' }}>
       <div className="max-w-5xl mx-auto px-6">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }} transition={{ duration: 0.9 }}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
           <span className={`section-label ${ss}`}>{res.label}</span>
           <h2 className={`section-title mt-4 mb-4 ${sf}`}>{res.heading}</h2>
           <div className="divider-gold w-24 mx-auto mb-6" />
-          <p className={`${ss} font-light text-cream-400 text-[14px] max-w-md mx-auto leading-relaxed`}>
+          <p className={`${ss} font-light text-[14px] max-w-md mx-auto leading-relaxed`} style={{ color: '#8a7a68' }}>
             {res.subtitle}
           </p>
         </motion.div>
@@ -50,7 +46,7 @@ export default function Reservation() {
         <motion.div
           initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }} transition={{ duration: 1 }}
-          className="glass-gold p-10 md:p-16 relative overflow-hidden"
+          className="glass-gold p-8 md:p-12 relative overflow-hidden"
         >
           {/* Corner decorations */}
           {['top-4 left-4', 'top-4 right-4', 'bottom-4 left-4', 'bottom-4 right-4'].map((pos, i) => (
@@ -76,8 +72,8 @@ export default function Reservation() {
                     <polyline points="20 6 9 17 4 12" />
                   </svg>
                 </motion.div>
-                <h3 className={`${sf} text-3xl font-light text-cream-100`}>{res.successTitle}</h3>
-                <p className={`${ss} font-light text-cream-400 text-[14px] max-w-sm`}>
+                <h3 className={`${sf} text-3xl font-light text-charcoal-900`}>{res.successTitle}</h3>
+                <p className={`${ss} font-light text-[14px] max-w-sm`} style={{ color: '#8a7a68' }}>
                   {res.successBody(form.name)}
                 </p>
                 <div className="divider-gold w-20" />
@@ -91,7 +87,7 @@ export default function Reservation() {
                 <div className="flex flex-col gap-1.5">
                   <label className={`text-[10px] tracking-widest uppercase text-gold-500 ${ss}`}>{res.name}</label>
                   <input
-                    required className={inputClass} placeholder={res.namePh}
+                    required className={`${inputClass} border-charcoal-900/15 text-charcoal-900`} placeholder={res.namePh}
                     value={form.name} onChange={e => update('name', e.target.value)}
                   />
                 </div>
@@ -100,7 +96,7 @@ export default function Reservation() {
                 <div className="flex flex-col gap-1.5">
                   <label className={`text-[10px] tracking-widest uppercase text-gold-500 ${ss}`}>{res.phone}</label>
                   <input
-                    required type="tel" className={inputClass} placeholder={res.phonePh}
+                    required type="tel" className={`${inputClass} border-charcoal-900/15 text-charcoal-900`} placeholder={res.phonePh}
                     value={form.phone} onChange={e => update('phone', e.target.value)}
                   />
                 </div>
@@ -109,8 +105,8 @@ export default function Reservation() {
                 <div className="flex flex-col gap-1.5">
                   <label className={`text-[10px] tracking-widest uppercase text-gold-500 ${ss}`}>{res.guests}</label>
                   <select
-                    className={`${inputClass} cursor-pointer`}
-                    style={{ background: '#050e18' }}
+                    className={`${inputClass} border-charcoal-900/15 text-charcoal-900 cursor-pointer`}
+                    style={{ background: 'transparent', colorScheme: 'light' }}
                     value={form.guests} onChange={e => update('guests', e.target.value)}
                   >
                     {[1,2,3,4,5,6,7,8].map(n => (
@@ -124,10 +120,10 @@ export default function Reservation() {
                 <div className="flex flex-col gap-1.5">
                   <label className={`text-[10px] tracking-widest uppercase text-gold-500 ${ss}`}>{res.date}</label>
                   <input
-                    required type="date" className={inputClass}
+                    required type="date" className={`${inputClass} border-charcoal-900/15 text-charcoal-900`}
                     min={new Date().toISOString().split('T')[0]}
                     value={form.date} onChange={e => update('date', e.target.value)}
-                    style={{ colorScheme: 'dark' }}
+                    style={{ colorScheme: 'light' }}
                   />
                 </div>
 
@@ -141,8 +137,8 @@ export default function Reservation() {
                         onClick={() => update('time', t)}
                         className={`text-[11px] font-sans px-3 py-1.5 border transition-all duration-300 ${
                           form.time === t
-                            ? 'border-gold-500 bg-gold-500/10 text-gold-400'
-                            : 'border-white/10 text-cream-400 hover:border-gold-700/50'
+                            ? 'border-gold-500 bg-gold-500 text-charcoal-900'
+                            : 'border-charcoal-900/15 text-charcoal-700 hover:border-gold-700/50'
                         }`}
                       >
                         {t}
@@ -155,7 +151,7 @@ export default function Reservation() {
                 <div className="flex flex-col gap-1.5 md:col-span-2">
                   <label className={`text-[10px] tracking-widest uppercase text-gold-500 ${ss}`}>{res.message}</label>
                   <textarea
-                    rows={3} className={`${inputClass} resize-none`}
+                    rows={3} className={`${inputClass} border-charcoal-900/15 text-charcoal-900 resize-none`}
                     placeholder={res.messagePh}
                     value={form.message} onChange={e => update('message', e.target.value)}
                   />
@@ -179,7 +175,7 @@ export default function Reservation() {
                       </>
                     )}
                   </button>
-                  <p className={`text-[11px] text-cream-400 ${ss} font-light leading-relaxed`}>
+                  <p className={`text-[11px] ${ss} font-light leading-relaxed`} style={{ color: '#8a7a68' }}>
                     {res.callLabel}<br/>
                     <a href="tel:+995551182407" className="text-gold-500 hover:text-gold-400 transition-colors">+995 551 18 24 07</a>
                   </p>

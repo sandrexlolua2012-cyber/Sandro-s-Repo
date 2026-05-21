@@ -77,13 +77,13 @@ export default function Reviews() {
   const ss = lang === 'ka' ? 'font-geo' : 'font-sans'
 
   return (
-    <section id="reviews" className="py-32 md:py-44 overflow-hidden" style={{ background: '#0f0620' }}>
+    <section id="reviews" className="py-16 md:py-24 overflow-hidden" style={{ background: '#fdf6ec' }}>
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }} transition={{ duration: 0.9 }}
-          className="text-center mb-20"
+          className="text-center mb-12"
         >
           <span className={`section-label ${ss}`}>{rv.label}</span>
           <h2 className={`section-title mt-4 mb-4 ${sf}`}>{rv.heading}</h2>
@@ -93,7 +93,7 @@ export default function Reviews() {
           <div className="flex flex-col items-center gap-2">
             <span className="font-serif text-7xl font-light text-gradient-gold">4.8</span>
             <Stars count={5} />
-            <span className={`text-cream-400 text-[13px] ${ss} font-light`}>{rv.count}</span>
+            <span className={`text-[13px] ${ss} font-light`} style={{ color: '#8a7a68' }}>{rv.count}</span>
           </div>
         </motion.div>
 
@@ -110,13 +110,13 @@ export default function Reviews() {
               className="glass flex flex-col gap-5 p-7 relative overflow-hidden group hover:border-gold-700/20 transition-colors duration-500"
             >
               {/* Quote mark */}
-              <span className="absolute top-4 right-6 font-serif text-7xl leading-none select-none text-gold-700/10 group-hover:text-gold-700/20 transition-colors duration-500">"</span>
+              <span className="absolute top-4 right-6 font-serif text-7xl leading-none select-none text-gold-500/20 group-hover:text-gold-500/30 transition-colors duration-500">"</span>
 
               {/* Stars */}
               <Stars count={r.rating} />
 
               {/* Text — always English per spec */}
-              <p className="font-sans font-light text-cream-300 text-[13px] leading-7 relative z-10 flex-1">
+              <p className="font-sans font-light text-[13px] leading-7 relative z-10 flex-1" style={{ color: '#4a3d2e' }}>
                 "{r.text}"
               </p>
 
@@ -132,8 +132,8 @@ export default function Reviews() {
                   {r.initials}
                 </div>
                 <div>
-                  <p className="font-sans text-[13px] text-cream-200 font-medium">{r.name}</p>
-                  <p className="font-sans text-[11px] text-cream-400 font-light">{r.location} · {r.date}</p>
+                  <p className="font-sans text-[13px] font-medium text-charcoal-900">{r.name}</p>
+                  <p className={`${ss} text-[11px] font-light`} style={{ color: '#8a7a68' }}>{r.location} · {r.date}</p>
                 </div>
               </div>
             </motion.div>
