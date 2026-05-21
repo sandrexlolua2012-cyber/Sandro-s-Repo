@@ -4,32 +4,40 @@ const features = [
   {
     num: '01',
     title: 'Fine Dining Atmosphere',
+    geo: 'ფაინ დაინინგის ატმოსფერო',
     text: 'Low candlelight, hand-picked ceramics, and a spatial design that turns every dinner into a private event. Our interior was conceived to feel like inhabiting a living painting.',
     tags: ['Candlelit', 'Intimate', '60 Covers'],
+    color: 'rgba(201,168,76,0.18)',
   },
   {
     num: '02',
     title: 'Artistic Interior',
+    geo: 'მხატვრული ინტერიერი',
     text: 'Original Georgian contemporary art lines every wall. The space breathes between old Tbilisi architecture and a curated modern aesthetic — a gallery you can dine in.',
     tags: ['Original Art', 'Old Tbilisi', 'Contemporary'],
+    color: 'rgba(154,122,223,0.18)',
   },
   {
     num: '03',
     title: 'Premium Service',
+    geo: 'პრემიუმ სერვისი',
     text: 'Our team is trained in European hospitality traditions. Each guest receives undivided attention — from the first aperitivo to the final petit four, your evening is orchestrated.',
     tags: ['European Service', 'Attentive', 'Personalised'],
+    color: 'rgba(42,184,204,0.18)',
   },
   {
     num: '04',
     title: 'Wine & Cocktails',
+    geo: 'ღვინო და კოქტეილები',
     text: 'An extensive cellar of natural Georgian wines — Rkatsiteli, Saperavi, Mtsvane — paired with inventive cocktails that honour the Caucasian botanical pantry.',
     tags: ['Natural Wine', 'Georgian Cellar', 'Signature Cocktails'],
+    color: 'rgba(139,26,26,0.22)',
   },
 ]
 
 export default function Experience() {
   return (
-    <section id="experience" className="bg-charcoal-800 py-32 md:py-44 overflow-hidden">
+    <section id="experience" className="py-32 md:py-44 overflow-hidden" style={{ background: '#060d08' }}>
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
         <motion.div
@@ -37,11 +45,14 @@ export default function Experience() {
           viewport={{ once: true }} transition={{ duration: 0.9 }}
           className="mb-24"
         >
-          <span className="section-label">The Experience</span>
+          <span className="section-label">The Experience · გამოცდილება</span>
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mt-4">
-            <h2 className="section-title max-w-md">
-              Beyond a<br /><span className="italic text-gradient-gold">meal</span>
-            </h2>
+            <div>
+              <h2 className="section-title max-w-md">
+                Beyond a<br /><span className="italic text-gradient-gold">meal</span>
+              </h2>
+              <p className="font-geo text-gold-500/40 text-xl font-light mt-2">სადილის მიღმა</p>
+            </div>
             <p className="font-sans font-light text-cream-400 text-[14px] leading-relaxed max-w-sm">
               Van Goghi is designed from the ground up to be a total sensory experience — sight, taste, scent, and sound calibrated together.
             </p>
@@ -60,7 +71,11 @@ export default function Experience() {
               transition={{ duration: 0.9, delay: (i % 2) * 0.15 }}
               className="group relative flex flex-col gap-5 py-12 border-b border-white/5 overflow-hidden"
             >
-              {/* Ghost number background */}
+              {/* Colorful ambient glow per card */}
+              <div className="absolute top-0 right-0 w-48 h-48 rounded-full pointer-events-none"
+                style={{ background: `radial-gradient(circle, ${f.color} 0%, transparent 70%)`, filter: 'blur(40px)' }} />
+
+              {/* Ghost number */}
               <span
                 className="absolute right-0 bottom-2 font-serif font-light leading-none select-none pointer-events-none"
                 style={{ fontSize: 'clamp(6rem, 10vw, 9rem)', color: 'rgba(201,168,76,0.05)' }}
@@ -72,9 +87,12 @@ export default function Experience() {
                 <span className="font-serif text-5xl font-light text-gold-700 leading-none">{f.num}</span>
                 <div className="divider-gold flex-1" />
               </div>
-              <h3 className="font-serif text-3xl md:text-4xl font-light text-cream-100 group-hover:text-gold-300 transition-colors duration-500 relative z-10">
-                {f.title}
-              </h3>
+              <div className="relative z-10">
+                <h3 className="font-serif text-3xl md:text-4xl font-light text-cream-100 group-hover:text-gold-300 transition-colors duration-500">
+                  {f.title}
+                </h3>
+                <p className="font-geo text-sm mt-1" style={{ color: 'rgba(201,168,76,0.5)' }}>{f.geo}</p>
+              </div>
               <p className="font-sans font-light text-cream-400 text-[14px] leading-8 relative z-10">{f.text}</p>
               <div className="flex flex-wrap gap-2 relative z-10">
                 {f.tags.map(t => (

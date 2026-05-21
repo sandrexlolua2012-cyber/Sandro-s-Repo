@@ -21,7 +21,7 @@ export default function Reservation() {
   const inputClass = `w-full bg-transparent border-b border-white/10 focus:border-gold-500 text-cream-100 font-sans font-light text-[14px] py-3 px-0 outline-none transition-colors duration-300 placeholder:text-cream-400/40`
 
   return (
-    <section id="reservation" className="relative bg-charcoal-900 py-32 md:py-44 overflow-hidden">
+    <section id="reservation" className="relative py-32 md:py-44 overflow-hidden" style={{ background: '#06080e' }}>
       {/* Ambient glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] rounded-full pointer-events-none"
         style={{ background: 'radial-gradient(ellipse, rgba(201,168,76,0.06) 0%, transparent 70%)', filter: 'blur(60px)' }} />
@@ -33,8 +33,9 @@ export default function Reservation() {
           viewport={{ once: true }} transition={{ duration: 0.9 }}
           className="text-center mb-16"
         >
-          <span className="section-label">Reservations</span>
-          <h2 className="section-title mt-4 mb-6">Reserve Your Table</h2>
+          <span className="section-label">Reservations · დაჯავშნა</span>
+          <h2 className="section-title mt-4 mb-2">Reserve Your Table</h2>
+          <p className="font-geo text-gold-500/45 text-2xl font-light mb-6">დაჯავშნეთ თქვენი მაგიდა</p>
           <div className="divider-gold w-24 mx-auto mb-6" />
           <p className="font-sans font-light text-cream-400 text-[14px] max-w-md mx-auto leading-relaxed">
             Secure your place at one of Tbilisi's most coveted dining experiences. We respond within 2 hours.
@@ -84,7 +85,7 @@ export default function Reservation() {
               <motion.form key="form" onSubmit={handleSubmit} className="grid md:grid-cols-2 gap-x-12 gap-y-8">
                 {/* Name */}
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-[10px] tracking-widest uppercase text-gold-500 font-sans">Full Name</label>
+                  <label className="text-[10px] tracking-widest uppercase text-gold-500 font-sans">Full Name <span className="font-geo normal-case tracking-normal text-gold-500/50">· სახელი და გვარი</span></label>
                   <input
                     required className={inputClass} placeholder="Your name"
                     value={form.name} onChange={e => update('name', e.target.value)}
@@ -93,7 +94,7 @@ export default function Reservation() {
 
                 {/* Phone */}
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-[10px] tracking-widest uppercase text-gold-500 font-sans">Phone Number</label>
+                  <label className="text-[10px] tracking-widest uppercase text-gold-500 font-sans">Phone Number <span className="font-geo normal-case tracking-normal text-gold-500/50">· ტელეფონი</span></label>
                   <input
                     required type="tel" className={inputClass} placeholder="+995 ___ __ __ __"
                     value={form.phone} onChange={e => update('phone', e.target.value)}
@@ -102,7 +103,7 @@ export default function Reservation() {
 
                 {/* Guests */}
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-[10px] tracking-widest uppercase text-gold-500 font-sans">Number of Guests</label>
+                  <label className="text-[10px] tracking-widest uppercase text-gold-500 font-sans">Guests <span className="font-geo normal-case tracking-normal text-gold-500/50">· სტუმრები</span></label>
                   <select
                     className={`${inputClass} cursor-pointer bg-charcoal-800`}
                     value={form.guests} onChange={e => update('guests', e.target.value)}
@@ -114,7 +115,7 @@ export default function Reservation() {
 
                 {/* Date */}
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-[10px] tracking-widest uppercase text-gold-500 font-sans">Date</label>
+                  <label className="text-[10px] tracking-widest uppercase text-gold-500 font-sans">Date <span className="font-geo normal-case tracking-normal text-gold-500/50">· თარიღი</span></label>
                   <input
                     required type="date" className={inputClass}
                     min={new Date().toISOString().split('T')[0]}
@@ -125,7 +126,7 @@ export default function Reservation() {
 
                 {/* Time */}
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-[10px] tracking-widest uppercase text-gold-500 font-sans">Preferred Time</label>
+                  <label className="text-[10px] tracking-widest uppercase text-gold-500 font-sans">Time <span className="font-geo normal-case tracking-normal text-gold-500/50">· სასურველი დრო</span></label>
                   <div className="flex flex-wrap gap-2 pt-2">
                     {times.map(t => (
                       <button
@@ -145,7 +146,7 @@ export default function Reservation() {
 
                 {/* Message */}
                 <div className="flex flex-col gap-1.5 md:col-span-2">
-                  <label className="text-[10px] tracking-widest uppercase text-gold-500 font-sans">Special Requests</label>
+                  <label className="text-[10px] tracking-widest uppercase text-gold-500 font-sans">Special Requests <span className="font-geo normal-case tracking-normal text-gold-500/50">· სპეციალური სურვილები</span></label>
                   <textarea
                     rows={3} className={`${inputClass} resize-none`}
                     placeholder="Allergies, occasions, special arrangements..."

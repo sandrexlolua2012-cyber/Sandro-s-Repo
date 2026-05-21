@@ -71,7 +71,7 @@ function Stars({ count }) {
 
 export default function Reviews() {
   return (
-    <section id="reviews" className="bg-charcoal-900 py-32 md:py-44 overflow-hidden">
+    <section id="reviews" className="py-32 md:py-44 overflow-hidden" style={{ background: '#080610' }}>
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
         <motion.div
@@ -79,8 +79,9 @@ export default function Reviews() {
           viewport={{ once: true }} transition={{ duration: 0.9 }}
           className="text-center mb-20"
         >
-          <span className="section-label">Guest Reviews</span>
-          <h2 className="section-title mt-4 mb-6">What Guests Say</h2>
+          <span className="section-label">Guest Reviews · სტუმრების შეფასება</span>
+          <h2 className="section-title mt-4 mb-2">What Guests Say</h2>
+          <p className="font-geo text-gold-500/45 text-2xl font-light mb-6">რას ამბობენ სტუმრები</p>
           <div className="divider-gold w-24 mx-auto mb-8" />
 
           {/* Rating summary */}

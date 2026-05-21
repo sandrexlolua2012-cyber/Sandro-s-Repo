@@ -49,7 +49,7 @@ const info = [
 
 export default function Contact() {
   return (
-    <section id="contact" className="bg-charcoal-800 py-32 md:py-44 overflow-hidden">
+    <section id="contact" className="py-32 md:py-44 overflow-hidden" style={{ background: '#060a0e' }}>
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
         <motion.div
@@ -57,8 +57,9 @@ export default function Contact() {
           viewport={{ once: true }} transition={{ duration: 0.9 }}
           className="mb-16"
         >
-          <span className="section-label">Find Us</span>
-          <h2 className="section-title mt-4 mb-6">Contact & Location</h2>
+          <span className="section-label">Find Us · მოგვიძებნეთ</span>
+          <h2 className="section-title mt-4 mb-2">Contact & Location</h2>
+          <p className="font-geo text-gold-500/45 text-xl font-light mb-6">კონტაქტი და მდებარეობა</p>
           <div className="divider-gold w-20" />
         </motion.div>
 

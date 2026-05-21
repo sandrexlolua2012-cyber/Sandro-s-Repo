@@ -1,7 +1,12 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
-const links = ['About', 'Menu', 'Experience', 'Reservation']
+const links = [
+  { en: 'About', geo: 'ჩვენ შესახებ', id: 'about' },
+  { en: 'Menu', geo: 'მენიუ', id: 'menu' },
+  { en: 'Experience', geo: 'გამოცდილება', id: 'experience' },
+  { en: 'Reservation', geo: 'დაჯავშნა', id: 'reservation' },
+]
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
@@ -15,7 +20,7 @@ export default function Navbar() {
 
   const scrollTo = (id) => {
     setMenuOpen(false)
-    document.getElementById(id.toLowerCase())?.scrollIntoView({ behavior: 'smooth' })
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
   }
 
   return (
@@ -38,12 +43,13 @@ export default function Navbar() {
           {/* Desktop links */}
           <ul className="hidden md:flex items-center gap-10">
             {links.map((link) => (
-              <li key={link}>
+              <li key={link.en}>
                 <button
-                  onClick={() => scrollTo(link)}
-                  className="text-[11px] tracking-widest uppercase font-sans font-light text-cream-300 hover:text-gold-400 transition-colors duration-300 relative group"
+                  onClick={() => scrollTo(link.id)}
+                  className="flex flex-col items-center text-[11px] tracking-widest uppercase font-sans font-light text-cream-300 hover:text-gold-400 transition-colors duration-300 relative group"
                 >
-                  {link}
+                  {link.en}
+                  <span className="font-geo text-[9px] normal-case tracking-normal text-gold-500/40 group-hover:text-gold-400/70 transition-colors duration-300">{link.geo}</span>
                   <span className="absolute -bottom-1 left-0 w-0 h-px bg-gold-500 group-hover:w-full transition-all duration-300" />
                 </button>
               </li>
@@ -52,10 +58,10 @@ export default function Navbar() {
 
           {/* Reserve CTA */}
           <button
-            onClick={() => scrollTo('Reservation')}
+            onClick={() => scrollTo('reservation')}
             className="hidden md:block btn-gold text-[10px] py-3 px-6"
           >
-            Reserve
+            Reserve <span className="font-geo normal-case tracking-normal opacity-60">· დაჯავშნა</span>
           </button>
 
           {/* Hamburger */}
@@ -83,24 +89,25 @@ export default function Navbar() {
           >
             {links.map((link, i) => (
               <motion.button
-                key={link}
+                key={link.en}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.07 + 0.1 }}
-                onClick={() => scrollTo(link)}
-                className="font-serif text-4xl font-light text-cream-100 hover:text-gold-400 transition-colors duration-300"
+                onClick={() => scrollTo(link.id)}
+                className="flex flex-col items-center gap-1 font-serif text-4xl font-light text-cream-100 hover:text-gold-400 transition-colors duration-300"
               >
-                {link}
+                {link.en}
+                <span className="font-geo text-base normal-case text-gold-500/50">{link.geo}</span>
               </motion.button>
             ))}
             <motion.button
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5 }}
-              onClick={() => scrollTo('Reservation')}
+              onClick={() => scrollTo('reservation')}
               className="btn-gold mt-6"
             >
-              Reserve a Table
+              Reserve a Table · <span className="font-geo font-light">მაგიდის დაჯავშნა</span>
             </motion.button>
           </motion.div>
         )}

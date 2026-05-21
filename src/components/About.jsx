@@ -13,7 +13,7 @@ const pillars = [
 
 export default function About() {
   return (
-    <section id="about" className="relative bg-charcoal-800 py-32 md:py-44 overflow-hidden">
+    <section id="about" className="relative py-32 md:py-44 overflow-hidden" style={{ background: '#0a0808' }}>
       {/* Background accent */}
       <div className="absolute top-0 right-0 w-1/2 h-full pointer-events-none"
         style={{ background: 'radial-gradient(ellipse at top right, rgba(201,168,76,0.04) 0%, transparent 60%)' }} />
@@ -61,12 +61,15 @@ export default function About() {
             initial="hidden" whileInView="visible" viewport={{ once: true }}
             className="order-1 lg:order-2 flex flex-col gap-8"
           >
-            <motion.span variants={fadeUp} custom={0} className="section-label">Our Story</motion.span>
+            <motion.span variants={fadeUp} custom={0} className="section-label">Our Story · ჩვენი ისტორია</motion.span>
 
             <motion.h2 variants={fadeUp} custom={1} className="section-title">
               Where Georgia<br />
               <span className="italic text-gradient-gold">meets Europe</span>
             </motion.h2>
+            <motion.p variants={fadeUp} custom={1.3} className="font-geo text-gold-500/40 text-xl font-light -mt-2">
+              სადაც საქართველო ევროპას შეხვდება
+            </motion.p>
 
             <motion.div variants={fadeUp} custom={2} className="divider-gold w-16" />
 
