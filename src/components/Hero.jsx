@@ -1,14 +1,18 @@
 import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
+import { useLang } from '../context/LanguageContext'
 
 export default function Hero() {
   const ref = useRef(null)
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] })
   const y = useTransform(scrollYProgress, [0, 1], ['0%', '30%'])
   const opacity = useTransform(scrollYProgress, [0, 0.7], [1, 0])
+  const { lang, tr } = useLang()
+  const sf = lang === 'ka' ? 'font-geo' : 'font-serif'
+  const ss = lang === 'ka' ? 'font-geo' : 'font-sans'
 
   return (
-    <section ref={ref} id="hero" className="relative h-screen min-h-[700px] flex items-center justify-center overflow-hidden" style={{ background: '#06060e' }}>
+    <section ref={ref} id="hero" className="relative h-screen min-h-[700px] flex items-center justify-center overflow-hidden" style={{ background: '#0c0820' }}>
       {/* Colorful ambient orbs */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <motion.div
@@ -46,7 +50,7 @@ export default function Hero() {
           backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E")`,
           backgroundRepeat: 'repeat',
         }} />
-        <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at center, transparent 30%, rgba(6,6,14,0.85) 100%)' }} />
+        <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at center, transparent 30%, rgba(12,8,32,0.85) 100%)' }} />
       </div>
 
       <motion.div style={{ y, opacity }} className="relative z-10 text-center px-6 max-w-5xl mx-auto">
@@ -56,28 +60,20 @@ export default function Hero() {
           className="flex items-center justify-center gap-4 mb-10"
         >
           <span className="divider-gold w-16" />
-          <span className="section-label">Tbilisi, Georgia · Est. 2022</span>
+          <span className={`section-label ${ss}`}>{tr.hero.location}</span>
           <span className="divider-gold w-16" />
         </motion.div>
 
         <motion.h1
           initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, delay: 0.6, ease: [0.4, 0, 0.2, 1] }}
-          className="font-serif font-light leading-none mb-3"
-          style={{ fontSize: 'clamp(3.5rem, 10vw, 8rem)', letterSpacing: '-0.01em' }}
+          className={`${sf} font-light leading-none mb-8`}
+          style={{ fontSize: 'clamp(3rem, 10vw, 8rem)', letterSpacing: '-0.01em' }}
         >
-          <span className="text-cream-100 italic">Art.</span>{' '}
-          <span className="text-gradient-gold">Flavor.</span>{' '}
-          <span className="text-cream-100 italic">Emotion.</span>
+          <span className="text-cream-100 italic">{tr.hero.h1[0]}</span>{' '}
+          <span className="text-gradient-gold">{tr.hero.h1[1]}</span>{' '}
+          <span className="text-cream-100 italic">{tr.hero.h1[2]}</span>
         </motion.h1>
-
-        <motion.p
-          initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.85 }}
-          className="font-geo text-gold-500/60 text-xl md:text-2xl font-light mb-8"
-        >
-          ხელოვნება. გემო. ემოცია.
-        </motion.p>
 
         <motion.div
           initial={{ scaleX: 0 }} animate={{ scaleX: 1 }}
@@ -90,11 +86,8 @@ export default function Hero() {
           transition={{ duration: 1, delay: 1.1 }}
           className="mb-14"
         >
-          <p className="font-sans font-light text-cream-300 text-base md:text-lg leading-relaxed max-w-lg mx-auto tracking-wide">
-            A modern Georgian‑European fusion experience<br className="hidden md:block" /> in the heart of Tbilisi.
-          </p>
-          <p className="font-geo text-cream-400/45 text-sm mt-2 max-w-lg mx-auto leading-relaxed">
-            თანამედროვე ქართულ-ევროპული სამზარეულო თბილისის გულში.
+          <p className={`${ss} font-light text-cream-300 text-base md:text-lg leading-relaxed max-w-lg mx-auto tracking-wide`}>
+            {tr.hero.subtitle}
           </p>
         </motion.div>
 
@@ -107,16 +100,16 @@ export default function Hero() {
             onClick={() => document.getElementById('reservation')?.scrollIntoView({ behavior: 'smooth' })}
             className="btn-gold"
           >
-            <span>Reserve a Table <span className="font-geo font-light opacity-70">· მაგიდის დაჯავშნა</span></span>
+            <span className={lang === 'ka' ? 'font-geo normal-case tracking-normal' : ''}>{tr.hero.cta}</span>
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
               <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </button>
           <button
             onClick={() => document.getElementById('menu')?.scrollIntoView({ behavior: 'smooth' })}
-            className="text-cream-400 text-xs tracking-widest uppercase font-sans hover:text-gold-400 transition-colors duration-300 underline underline-offset-4"
+            className={`text-cream-400 text-xs tracking-widest uppercase font-sans hover:text-gold-400 transition-colors duration-300 underline underline-offset-4 ${lang === 'ka' ? 'font-geo normal-case tracking-normal text-sm' : ''}`}
           >
-            Explore Menu <span className="font-geo normal-case tracking-normal">· მენიუს ნახვა</span>
+            {tr.hero.ctaMenu}
           </button>
         </motion.div>
       </motion.div>
@@ -126,7 +119,7 @@ export default function Hero() {
         transition={{ delay: 2, duration: 1 }}
         className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
       >
-        <span className="text-[9px] tracking-widest3 text-cream-400 uppercase font-sans">Scroll</span>
+        <span className={`text-[9px] tracking-widest3 text-cream-400 uppercase ${ss}`}>{tr.hero.scroll}</span>
         <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}

@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { LanguageProvider, useLang } from './context/LanguageContext'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
-import ChefQuote from './components/ChefQuote'
 import About from './components/About'
 import Dishes from './components/Dishes'
 import Experience from './components/Experience'
@@ -14,7 +14,8 @@ import Footer from './components/Footer'
 function Loader({ onDone }) {
   return (
     <motion.div
-      className="fixed inset-0 z-[100] bg-charcoal-900 flex flex-col items-center justify-center gap-6"
+      className="fixed inset-0 z-[100] flex flex-col items-center justify-center gap-6"
+      style={{ background: '#0c0820' }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
     >
@@ -42,7 +43,23 @@ function Loader({ onDone }) {
   )
 }
 
-export default function App() {
+function MarqueeStrip() {
+  const { tr } = useLang()
+  const doubled = [...tr.marquee, ...tr.marquee]
+  return (
+    <div className="border-y border-gold-700/20 py-4 overflow-hidden" style={{ background: '#120a04' }}>
+      <div className="marquee-track">
+        {doubled.map((item, i) => (
+          <span key={i} className="inline-flex items-center gap-8 mx-8 text-[10px] tracking-widest3 uppercase font-sans text-gold-500/40">
+            {item}<span className="text-gold-700/30">—</span>
+          </span>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+function AppContent() {
   const [loading, setLoading] = useState(true)
 
   return (
@@ -60,16 +77,7 @@ export default function App() {
           <Navbar />
           <main>
             <Hero />
-            <div className="bg-charcoal-800 border-y border-gold-700/20 py-4 overflow-hidden">
-              <div className="marquee-track">
-                {['Fine Dining', 'Georgian Fusion', 'Tbilisi · Georgia', 'Est. 2022', '60 Covers', 'Private Events', 'Natural Wine', 'Tasting Menu', 'Open Daily', 'Fine Dining', 'Georgian Fusion', 'Tbilisi · Georgia', 'Est. 2022', '60 Covers', 'Private Events', 'Natural Wine', 'Tasting Menu', 'Open Daily'].map((item, i) => (
-                  <span key={i} className="inline-flex items-center gap-8 mx-8 text-[10px] tracking-widest3 uppercase font-sans text-gold-500/40">
-                    {item}<span className="text-gold-700/30">—</span>
-                  </span>
-                ))}
-              </div>
-            </div>
-            <ChefQuote />
+            <MarqueeStrip />
             <About />
             <Dishes />
             <Experience />
@@ -81,5 +89,13 @@ export default function App() {
         </motion.div>
       )}
     </>
+  )
+}
+
+export default function App() {
+  return (
+    <LanguageProvider>
+      <AppContent />
+    </LanguageProvider>
   )
 }

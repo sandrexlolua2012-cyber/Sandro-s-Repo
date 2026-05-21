@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { useLang } from '../context/LanguageContext'
 
 const socials = [
   {
@@ -30,19 +31,16 @@ const socials = [
   },
 ]
 
-const navLinks = [
-  { label: 'About', id: 'about' },
-  { label: 'Menu', id: 'menu' },
-  { label: 'Experience', id: 'experience' },
-  { label: 'Reservation', id: 'reservation' },
-  { label: 'Contact', id: 'contact' },
-]
-
 export default function Footer() {
+  const { lang, tr } = useLang()
+  const ft = tr.footer
+  const sf = lang === 'ka' ? 'font-geo' : 'font-serif'
+  const ss = lang === 'ka' ? 'font-geo' : 'font-sans'
+
   const scrollTo = (id) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
 
   return (
-    <footer className="bg-charcoal-900 border-t border-white/5">
+    <footer className="border-t border-white/5" style={{ background: '#08051a' }}>
       {/* Top strip */}
       <div className="divider-gold" />
 
@@ -54,8 +52,11 @@ export default function Footer() {
               <span className="font-serif text-3xl font-light tracking-widest text-cream-100">VAN GOGHI</span>
               <div className="divider-gold w-16 mt-2" />
             </button>
-            <p className="font-sans font-light text-cream-400 text-[13px] leading-relaxed max-w-xs">
-              A modern Georgian‑European fusion restaurant in the heart of Tbilisi. Art, flavour, and emotion — on every plate.
+            <p className={`${ss} font-light text-cream-400 text-[13px] leading-relaxed max-w-xs`}>
+              {lang === 'ka'
+                ? 'თანამედროვე ქართულ-ევროპული ფიუჟენ რესტორანი თბილისის გულში. ხელოვნება, გემო და ემოცია — ყოველ კერძში.'
+                : 'A modern Georgian‑European fusion restaurant in the heart of Tbilisi. Art, flavour, and emotion — on every plate.'
+              }
             </p>
             {/* Socials */}
             <div className="flex items-center gap-4 mt-2">
@@ -77,13 +78,13 @@ export default function Footer() {
 
           {/* Navigation */}
           <div>
-            <p className="text-[9px] tracking-widest3 uppercase text-gold-500 font-sans mb-6">Navigation</p>
+            <p className={`text-[9px] tracking-widest3 uppercase text-gold-500 ${ss} mb-6`}>{ft.navLabel}</p>
             <ul className="flex flex-col gap-3">
-              {navLinks.map((link) => (
+              {ft.links.map((link) => (
                 <li key={link.id}>
                   <button
                     onClick={() => scrollTo(link.id)}
-                    className="font-sans font-light text-[13px] text-cream-400 hover:text-gold-400 transition-colors duration-300 text-left"
+                    className={`${ss} font-light text-[13px] text-cream-400 hover:text-gold-400 transition-colors duration-300 text-left`}
                   >
                     {link.label}
                   </button>
@@ -94,20 +95,20 @@ export default function Footer() {
 
           {/* Contact info */}
           <div className="flex flex-col gap-4">
-            <p className="text-[9px] tracking-widest3 uppercase text-gold-500 font-sans mb-2">Visit Us</p>
-            <p className="font-sans font-light text-cream-300 text-[13px] leading-relaxed">
-              24 Mikheil Zandukeli St<br />Tbilisi 0179, Georgia
+            <p className={`text-[9px] tracking-widest3 uppercase text-gold-500 ${ss} mb-2`}>{ft.visitLabel}</p>
+            <p className={`${ss} font-light text-cream-300 text-[13px] leading-relaxed whitespace-pre-line`}>
+              {ft.addr}
             </p>
-            <a href="tel:+995551182407" className="font-sans text-[13px] text-cream-400 hover:text-gold-400 transition-colors duration-300">
+            <a href="tel:+995551182407" className={`${ss} text-[13px] text-cream-400 hover:text-gold-400 transition-colors duration-300`}>
               +995 551 18 24 07
             </a>
-            <p className="font-sans font-light text-cream-400 text-[13px]">Open daily until 00:00</p>
+            <p className={`${ss} font-light text-cream-400 text-[13px]`}>{ft.hours}</p>
             <motion.button
               whileHover={{ x: 4 }}
               onClick={() => scrollTo('reservation')}
-              className="flex items-center gap-2 text-gold-500 text-[12px] tracking-widest uppercase font-sans hover:text-gold-400 transition-colors duration-300 mt-2"
+              className={`flex items-center gap-2 text-gold-500 text-[12px] tracking-widest uppercase ${ss} hover:text-gold-400 transition-colors duration-300 mt-2`}
             >
-              <span>Reserve Now</span>
+              <span>{ft.reserveNow}</span>
               <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
                 <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
@@ -121,8 +122,8 @@ export default function Footer() {
           <p className="font-sans font-light text-cream-400/50 text-[11px]">
             © {new Date().getFullYear()} Van Goghi. All rights reserved.
           </p>
-          <p className="font-sans font-light text-cream-400/30 text-[11px] italic font-serif">
-            "Art. Flavor. Emotion."
+          <p className={`${ss} font-light text-cream-400/30 text-[11px] italic`}>
+            {ft.tagline}
           </p>
         </div>
       </div>

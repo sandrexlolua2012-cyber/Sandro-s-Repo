@@ -1,55 +1,44 @@
 import { motion } from 'framer-motion'
+import { useLang } from '../context/LanguageContext'
 
-const info = [
-  {
-    icon: (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round">
-        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
-      </svg>
-    ),
-    label: 'Address',
-    value: '24 Mikheil Zandukeli St',
-    sub: 'Tbilisi 0179, Georgia',
-    href: 'https://maps.google.com/?q=24+Mikheil+Zandukeli+St+Tbilisi',
-  },
-  {
-    icon: (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round">
-        <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .18h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.29 6.29l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/>
-      </svg>
-    ),
-    label: 'Phone',
-    value: '+995 551 18 24 07',
-    sub: 'We answer daily',
-    href: 'tel:+995551182407',
-  },
-  {
-    icon: (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round">
-        <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
-      </svg>
-    ),
-    label: 'Hours',
-    value: 'Open Daily',
-    sub: 'Until 00:00 midnight',
-    href: null,
-  },
-  {
-    icon: (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round">
-        <rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
-      </svg>
-    ),
-    label: 'Instagram',
-    value: '@vangoghi_tbilisi',
-    sub: 'Follow for updates',
-    href: 'https://instagram.com/vangoghi_tbilisi',
-  },
-]
+const icons = {
+  address: (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round">
+      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
+    </svg>
+  ),
+  phone: (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round">
+      <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .18h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.29 6.29l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/>
+    </svg>
+  ),
+  hours: (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round">
+      <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+    </svg>
+  ),
+  instagram: (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round">
+      <rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+    </svg>
+  ),
+}
 
 export default function Contact() {
+  const { lang, tr } = useLang()
+  const ct = tr.contact
+  const sf = lang === 'ka' ? 'font-geo' : 'font-serif'
+  const ss = lang === 'ka' ? 'font-geo' : 'font-sans'
+
+  const info = [
+    { icon: icons.address, label: ct.address, value: '24 Mikheil Zandukeli St', sub: ct.addressSub, href: 'https://maps.google.com/?q=24+Mikheil+Zandukeli+St+Tbilisi' },
+    { icon: icons.phone, label: ct.phone, value: '+995 551 18 24 07', sub: ct.phoneSub, href: 'tel:+995551182407' },
+    { icon: icons.hours, label: ct.hours, value: ct.hoursVal, sub: ct.hoursSub, href: null },
+    { icon: icons.instagram, label: ct.instagram, value: '@vangoghi_tbilisi', sub: ct.instaSub, href: 'https://instagram.com/vangoghi_tbilisi' },
+  ]
+
   return (
-    <section id="contact" className="py-32 md:py-44 overflow-hidden" style={{ background: '#060a0e' }}>
+    <section id="contact" className="py-32 md:py-44 overflow-hidden" style={{ background: '#080f06' }}>
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
         <motion.div
@@ -57,9 +46,8 @@ export default function Contact() {
           viewport={{ once: true }} transition={{ duration: 0.9 }}
           className="mb-16"
         >
-          <span className="section-label">Find Us · მოგვიძებნეთ</span>
-          <h2 className="section-title mt-4 mb-2">Contact & Location</h2>
-          <p className="font-geo text-gold-500/45 text-xl font-light mb-6">კონტაქტი და მდებარეობა</p>
+          <span className={`section-label ${ss}`}>{ct.label}</span>
+          <h2 className={`section-title mt-4 mb-4 ${sf}`}>{ct.heading}</h2>
           <div className="divider-gold w-20" />
         </motion.div>
 
@@ -80,18 +68,18 @@ export default function Contact() {
                   >
                     <span className="text-gold-500 group-hover:text-gold-400 transition-colors duration-300">{item.icon}</span>
                     <div>
-                      <p className="text-[9px] tracking-widest uppercase text-cream-400 font-sans mb-2">{item.label}</p>
-                      <p className="font-serif text-lg text-cream-100 group-hover:text-gold-300 transition-colors duration-300">{item.value}</p>
-                      <p className="font-sans text-[12px] text-cream-400 font-light mt-1">{item.sub}</p>
+                      <p className={`text-[9px] tracking-widest uppercase text-cream-400 ${ss} mb-2`}>{item.label}</p>
+                      <p className={`${sf} text-lg text-cream-100 group-hover:text-gold-300 transition-colors duration-300`}>{item.value}</p>
+                      <p className={`${ss} text-[12px] text-cream-400 font-light mt-1`}>{item.sub}</p>
                     </div>
                   </a>
                 ) : (
                   <div className="flex flex-col gap-4 p-7 glass h-full">
                     <span className="text-gold-500">{item.icon}</span>
                     <div>
-                      <p className="text-[9px] tracking-widest uppercase text-cream-400 font-sans mb-2">{item.label}</p>
-                      <p className="font-serif text-lg text-cream-100">{item.value}</p>
-                      <p className="font-sans text-[12px] text-cream-400 font-light mt-1">{item.sub}</p>
+                      <p className={`text-[9px] tracking-widest uppercase text-cream-400 ${ss} mb-2`}>{item.label}</p>
+                      <p className={`${sf} text-lg text-cream-100`}>{item.value}</p>
+                      <p className={`${ss} text-[12px] text-cream-400 font-light mt-1`}>{item.sub}</p>
                     </div>
                   </div>
                 )}

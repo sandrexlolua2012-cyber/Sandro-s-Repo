@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { useLang } from '../context/LanguageContext'
 
 const reviews = [
   {
@@ -15,7 +16,7 @@ const reviews = [
     location: 'Tbilisi',
     date: 'January 2024',
     rating: 5,
-    text: 'The beef cheeks simply melted in your mouth. The Saperavi glaze was extraordinary — you could taste Kakheti in every bite. One of the finest meals I\'ve had in Georgia.',
+    text: "The beef cheeks simply melted in your mouth. The Saperavi glaze was extraordinary — you could taste Kakheti in every bite. One of the finest meals I've had in Georgia.",
     initials: 'GT',
     color: '#8b1a1a',
   },
@@ -33,7 +34,7 @@ const reviews = [
     location: 'Tbilisi',
     date: 'April 2024',
     rating: 5,
-    text: 'One of the best dining experiences in Tbilisi, full stop. The khinkali in bonito broth is unlike anything I\'ve tasted. Van Goghi has redefined what Georgian cuisine can be.',
+    text: "One of the best dining experiences in Tbilisi, full stop. The khinkali in bonito broth is unlike anything I've tasted. Van Goghi has redefined what Georgian cuisine can be.",
     initials: 'NK',
     color: '#4a9a50',
   },
@@ -70,8 +71,13 @@ function Stars({ count }) {
 }
 
 export default function Reviews() {
+  const { lang, tr } = useLang()
+  const rv = tr.reviews
+  const sf = lang === 'ka' ? 'font-geo' : 'font-serif'
+  const ss = lang === 'ka' ? 'font-geo' : 'font-sans'
+
   return (
-    <section id="reviews" className="py-32 md:py-44 overflow-hidden" style={{ background: '#080610' }}>
+    <section id="reviews" className="py-32 md:py-44 overflow-hidden" style={{ background: '#0f0620' }}>
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
         <motion.div
@@ -79,16 +85,15 @@ export default function Reviews() {
           viewport={{ once: true }} transition={{ duration: 0.9 }}
           className="text-center mb-20"
         >
-          <span className="section-label">Guest Reviews · სტუმრების შეფასება</span>
-          <h2 className="section-title mt-4 mb-2">What Guests Say</h2>
-          <p className="font-geo text-gold-500/45 text-2xl font-light mb-6">რას ამბობენ სტუმრები</p>
+          <span className={`section-label ${ss}`}>{rv.label}</span>
+          <h2 className={`section-title mt-4 mb-4 ${sf}`}>{rv.heading}</h2>
           <div className="divider-gold w-24 mx-auto mb-8" />
 
           {/* Rating summary */}
           <div className="flex flex-col items-center gap-2">
             <span className="font-serif text-7xl font-light text-gradient-gold">4.8</span>
             <Stars count={5} />
-            <span className="text-cream-400 text-[13px] font-sans font-light">Based on 1,946 reviews</span>
+            <span className={`text-cream-400 text-[13px] ${ss} font-light`}>{rv.count}</span>
           </div>
         </motion.div>
 
@@ -110,7 +115,7 @@ export default function Reviews() {
               {/* Stars */}
               <Stars count={r.rating} />
 
-              {/* Text */}
+              {/* Text — always English per spec */}
               <p className="font-sans font-light text-cream-300 text-[13px] leading-7 relative z-10 flex-1">
                 "{r.text}"
               </p>

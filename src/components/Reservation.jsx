@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useLang } from '../context/LanguageContext'
 
 const times = ['18:00', '18:30', '19:00', '19:30', '20:00', '20:30', '21:00', '21:30', '22:00', '22:30']
 
@@ -7,6 +8,10 @@ export default function Reservation() {
   const [form, setForm] = useState({ name: '', phone: '', guests: '2', date: '', time: '', message: '' })
   const [sent, setSent] = useState(false)
   const [loading, setLoading] = useState(false)
+  const { lang, tr } = useLang()
+  const res = tr.reservation
+  const sf = lang === 'ka' ? 'font-geo' : 'font-serif'
+  const ss = lang === 'ka' ? 'font-geo' : 'font-sans'
 
   const update = (k, v) => setForm(prev => ({ ...prev, [k]: v }))
 
@@ -21,7 +26,7 @@ export default function Reservation() {
   const inputClass = `w-full bg-transparent border-b border-white/10 focus:border-gold-500 text-cream-100 font-sans font-light text-[14px] py-3 px-0 outline-none transition-colors duration-300 placeholder:text-cream-400/40`
 
   return (
-    <section id="reservation" className="relative py-32 md:py-44 overflow-hidden" style={{ background: '#06080e' }}>
+    <section id="reservation" className="relative py-32 md:py-44 overflow-hidden" style={{ background: '#050e18' }}>
       {/* Ambient glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] rounded-full pointer-events-none"
         style={{ background: 'radial-gradient(ellipse, rgba(201,168,76,0.06) 0%, transparent 70%)', filter: 'blur(60px)' }} />
@@ -33,12 +38,11 @@ export default function Reservation() {
           viewport={{ once: true }} transition={{ duration: 0.9 }}
           className="text-center mb-16"
         >
-          <span className="section-label">Reservations · დაჯავშნა</span>
-          <h2 className="section-title mt-4 mb-2">Reserve Your Table</h2>
-          <p className="font-geo text-gold-500/45 text-2xl font-light mb-6">დაჯავშნეთ თქვენი მაგიდა</p>
+          <span className={`section-label ${ss}`}>{res.label}</span>
+          <h2 className={`section-title mt-4 mb-4 ${sf}`}>{res.heading}</h2>
           <div className="divider-gold w-24 mx-auto mb-6" />
-          <p className="font-sans font-light text-cream-400 text-[14px] max-w-md mx-auto leading-relaxed">
-            Secure your place at one of Tbilisi's most coveted dining experiences. We respond within 2 hours.
+          <p className={`${ss} font-light text-cream-400 text-[14px] max-w-md mx-auto leading-relaxed`}>
+            {res.subtitle}
           </p>
         </motion.div>
 
@@ -72,50 +76,53 @@ export default function Reservation() {
                     <polyline points="20 6 9 17 4 12" />
                   </svg>
                 </motion.div>
-                <h3 className="font-serif text-3xl font-light text-cream-100">Reservation Received</h3>
-                <p className="font-sans font-light text-cream-400 text-[14px] max-w-sm">
-                  Thank you, {form.name}. We'll confirm your table via phone within 2 hours.
+                <h3 className={`${sf} text-3xl font-light text-cream-100`}>{res.successTitle}</h3>
+                <p className={`${ss} font-light text-cream-400 text-[14px] max-w-sm`}>
+                  {res.successBody(form.name)}
                 </p>
                 <div className="divider-gold w-20" />
-                <button onClick={() => setSent(false)} className="text-[11px] tracking-widest uppercase text-gold-500 hover:text-gold-400 font-sans transition-colors">
-                  Make another reservation
+                <button onClick={() => setSent(false)} className={`text-[11px] tracking-widest uppercase text-gold-500 hover:text-gold-400 ${ss} transition-colors`}>
+                  {res.again}
                 </button>
               </motion.div>
             ) : (
               <motion.form key="form" onSubmit={handleSubmit} className="grid md:grid-cols-2 gap-x-12 gap-y-8">
                 {/* Name */}
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-[10px] tracking-widest uppercase text-gold-500 font-sans">Full Name <span className="font-geo normal-case tracking-normal text-gold-500/50">· სახელი და გვარი</span></label>
+                  <label className={`text-[10px] tracking-widest uppercase text-gold-500 ${ss}`}>{res.name}</label>
                   <input
-                    required className={inputClass} placeholder="Your name"
+                    required className={inputClass} placeholder={res.namePh}
                     value={form.name} onChange={e => update('name', e.target.value)}
                   />
                 </div>
 
                 {/* Phone */}
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-[10px] tracking-widest uppercase text-gold-500 font-sans">Phone Number <span className="font-geo normal-case tracking-normal text-gold-500/50">· ტელეფონი</span></label>
+                  <label className={`text-[10px] tracking-widest uppercase text-gold-500 ${ss}`}>{res.phone}</label>
                   <input
-                    required type="tel" className={inputClass} placeholder="+995 ___ __ __ __"
+                    required type="tel" className={inputClass} placeholder={res.phonePh}
                     value={form.phone} onChange={e => update('phone', e.target.value)}
                   />
                 </div>
 
                 {/* Guests */}
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-[10px] tracking-widest uppercase text-gold-500 font-sans">Guests <span className="font-geo normal-case tracking-normal text-gold-500/50">· სტუმრები</span></label>
+                  <label className={`text-[10px] tracking-widest uppercase text-gold-500 ${ss}`}>{res.guests}</label>
                   <select
-                    className={`${inputClass} cursor-pointer bg-charcoal-800`}
+                    className={`${inputClass} cursor-pointer`}
+                    style={{ background: '#050e18' }}
                     value={form.guests} onChange={e => update('guests', e.target.value)}
                   >
-                    {[1,2,3,4,5,6,7,8].map(n => <option key={n} value={n}>{n} {n === 1 ? 'Guest' : 'Guests'}</option>)}
-                    <option value="9+">9+ Guests (Private)</option>
+                    {[1,2,3,4,5,6,7,8].map(n => (
+                      <option key={n} value={n}>{res.guestOpt(n)}</option>
+                    ))}
+                    <option value="9+">{res.guestPlus}</option>
                   </select>
                 </div>
 
                 {/* Date */}
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-[10px] tracking-widest uppercase text-gold-500 font-sans">Date <span className="font-geo normal-case tracking-normal text-gold-500/50">· თარიღი</span></label>
+                  <label className={`text-[10px] tracking-widest uppercase text-gold-500 ${ss}`}>{res.date}</label>
                   <input
                     required type="date" className={inputClass}
                     min={new Date().toISOString().split('T')[0]}
@@ -126,7 +133,7 @@ export default function Reservation() {
 
                 {/* Time */}
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-[10px] tracking-widest uppercase text-gold-500 font-sans">Time <span className="font-geo normal-case tracking-normal text-gold-500/50">· სასურველი დრო</span></label>
+                  <label className={`text-[10px] tracking-widest uppercase text-gold-500 ${ss}`}>{res.time}</label>
                   <div className="flex flex-wrap gap-2 pt-2">
                     {times.map(t => (
                       <button
@@ -146,10 +153,10 @@ export default function Reservation() {
 
                 {/* Message */}
                 <div className="flex flex-col gap-1.5 md:col-span-2">
-                  <label className="text-[10px] tracking-widest uppercase text-gold-500 font-sans">Special Requests <span className="font-geo normal-case tracking-normal text-gold-500/50">· სპეციალური სურვილები</span></label>
+                  <label className={`text-[10px] tracking-widest uppercase text-gold-500 ${ss}`}>{res.message}</label>
                   <textarea
                     rows={3} className={`${inputClass} resize-none`}
-                    placeholder="Allergies, occasions, special arrangements..."
+                    placeholder={res.messagePh}
                     value={form.message} onChange={e => update('message', e.target.value)}
                   />
                 </div>
@@ -158,20 +165,22 @@ export default function Reservation() {
                 <div className="md:col-span-2 flex flex-col sm:flex-row items-start sm:items-center gap-6 pt-4">
                   <button type="submit" disabled={loading} className="btn-gold min-w-[200px] justify-center">
                     {loading ? (
-                      <motion.span animate={{ opacity: [1, 0.5, 1] }} transition={{ duration: 1, repeat: Infinity }}>
-                        Sending…
+                      <motion.span animate={{ opacity: [1, 0.5, 1] }} transition={{ duration: 1, repeat: Infinity }}
+                        className={lang === 'ka' ? 'font-geo normal-case tracking-normal' : ''}
+                      >
+                        {res.sending}
                       </motion.span>
                     ) : (
                       <>
-                        <span>Confirm Reservation</span>
+                        <span className={lang === 'ka' ? 'font-geo normal-case tracking-normal' : ''}>{res.confirm}</span>
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                           <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
                         </svg>
                       </>
                     )}
                   </button>
-                  <p className="text-[11px] text-cream-400 font-sans font-light leading-relaxed">
-                    Or call us directly:<br/>
+                  <p className={`text-[11px] text-cream-400 ${ss} font-light leading-relaxed`}>
+                    {res.callLabel}<br/>
                     <a href="tel:+995551182407" className="text-gold-500 hover:text-gold-400 transition-colors">+995 551 18 24 07</a>
                   </p>
                 </div>

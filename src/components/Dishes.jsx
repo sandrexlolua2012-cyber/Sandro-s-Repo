@@ -1,67 +1,14 @@
 import { motion } from 'framer-motion'
-
-const dishes = [
-  {
-    name: 'Shrimp in Grape Leaves',
-    geo: 'კრევეტი ვაზის ფოთლებში',
-    desc: 'Plump Atlantic shrimp wrapped in sun-dried Georgian grape leaves, charred over open flame with saffron butter.',
-    tag: 'Starter',
-    accent: '#c4621a',
-  },
-  {
-    name: 'Mini Khinkali & Bonito Broth',
-    geo: 'მინი ხინკალი ბონიტოს ბულიონში',
-    desc: 'Delicate pork-and-herb dumplings served in a shimmering dashi-bonito consommé with adjika oil.',
-    tag: 'Signature',
-    accent: '#4a90d9',
-  },
-  {
-    name: 'Beef Cheeks',
-    geo: 'საქონლის ლოყა',
-    desc: '48-hour braised beef cheeks glazed with Saperavi reduction, parsnip purée, and crispy capers.',
-    tag: 'Main',
-    accent: '#8b1a1a',
-  },
-  {
-    name: 'Chicken Liver Salad',
-    geo: 'ქათმის ღვიძლის სალათი',
-    desc: 'Seared livers, bitter radicchio, walnuts, pomegranate molasses vinaigrette and shaved pecorino.',
-    tag: 'Salad',
-    accent: '#c9a84c',
-  },
-  {
-    name: 'Seabass',
-    geo: 'ზღვის გუჯო',
-    desc: 'Pan-seared seabass over tkemali-creamed leeks, roe butter sauce and fennel fronds.',
-    tag: 'Main',
-    accent: '#2ab8cc',
-  },
-  {
-    name: 'Beef Tartare',
-    geo: 'საქონლის ტარტარი',
-    desc: 'Hand-cut tenderloin with tarragon, churchkhela crumb, quail egg yolk and smoked adjika.',
-    tag: 'Raw Bar',
-    accent: '#e05050',
-  },
-  {
-    name: 'Tasting Set',
-    geo: 'დეგუსტაციური სეტი',
-    desc: 'Seven courses curated by our chef — a complete narrative of Georgian flavour in European language.',
-    tag: 'Dégustation',
-    accent: '#9a7adf',
-  },
-  {
-    name: 'Sunflower Dessert',
-    geo: 'მზესუმზირის დესერტი',
-    desc: 'Caramelised honey mousse sculpted as a sunflower, churchkhela praline and Kakhetian walnut ice cream.',
-    tag: 'Dessert',
-    accent: '#f0c030',
-  },
-]
+import { useLang } from '../context/LanguageContext'
 
 export default function Dishes() {
+  const { lang, tr } = useLang()
+  const d = tr.dishes
+  const sf = lang === 'ka' ? 'font-geo' : 'font-serif'
+  const ss = lang === 'ka' ? 'font-geo' : 'font-sans'
+
   return (
-    <section id="menu" className="py-32 md:py-44 overflow-hidden" style={{ background: '#080608' }}>
+    <section id="menu" className="py-32 md:py-44 overflow-hidden" style={{ background: '#160508' }}>
       <div className="max-w-6xl mx-auto px-6">
         {/* Header */}
         <motion.div
@@ -69,21 +16,17 @@ export default function Dishes() {
           viewport={{ once: true }} transition={{ duration: 0.9 }}
           className="text-center mb-24"
         >
-          <span className="section-label">Signature Dishes</span>
-          <h2 className="section-title mt-4 mb-2">The Menu</h2>
-          <p className="font-geo text-gold-500/50 text-2xl font-light mb-6">მენიუ</p>
+          <span className={`section-label ${ss}`}>{d.label}</span>
+          <h2 className={`section-title mt-4 mb-2 ${sf}`}>{d.heading}</h2>
           <div className="divider-gold w-24 mx-auto" />
-          <p className="font-sans font-light text-cream-400 text-[14px] mt-6 max-w-md mx-auto leading-relaxed">
-            Each dish is a composition — seasonal Georgian ingredients elevated through modern European discipline.
-          </p>
-          <p className="font-geo text-cream-400/40 text-sm mt-2 max-w-md mx-auto leading-relaxed">
-            ყოველი კერძი კომპოზიციაა — ქართული სეზონური ინგრედიენტები ევროპული ოსტატობით.
+          <p className={`${ss} font-light text-cream-400 text-[14px] mt-6 max-w-md mx-auto leading-relaxed`}>
+            {d.subtitle}
           </p>
         </motion.div>
 
         {/* Dish list */}
         <div className="max-w-4xl mx-auto">
-          {dishes.map((dish, i) => (
+          {d.items.map((dish, i) => (
             <motion.div
               key={dish.name}
               initial={{ opacity: 0, y: 30 }}
@@ -109,22 +52,19 @@ export default function Dishes() {
               {/* Content */}
               <div className="flex-1">
                 <span
-                  className="text-[9px] tracking-widest uppercase font-sans px-2.5 py-1 border inline-block mb-4"
+                  className={`text-[9px] tracking-widest uppercase ${ss} px-2.5 py-1 border inline-block mb-4`}
                   style={{ borderColor: `${dish.accent}60`, color: dish.accent, background: `${dish.accent}10` }}
                 >
                   {dish.tag}
                 </span>
-                <h3 className="font-serif text-3xl md:text-4xl font-light text-cream-100 group-hover:text-gold-300 transition-colors duration-500 mb-1 leading-tight">
+                <h3 className={`${sf} text-3xl md:text-4xl font-light text-cream-100 group-hover:text-gold-300 transition-colors duration-500 mb-1 leading-tight`}>
                   {dish.name}
                 </h3>
-                <p className="font-geo text-sm mb-3" style={{ color: `${dish.accent}90` }}>
-                  {dish.geo}
-                </p>
                 <div
                   className="h-px w-10 mb-4 group-hover:w-28 transition-all duration-700"
                   style={{ background: `${dish.accent}70` }}
                 />
-                <p className="font-sans text-[13px] text-cream-400 font-light leading-relaxed max-w-xl">
+                <p className={`${ss} text-[13px] text-cream-400 font-light leading-relaxed max-w-xl`}>
                   {dish.desc}
                 </p>
               </div>
@@ -142,7 +82,7 @@ export default function Dishes() {
             onClick={() => document.getElementById('reservation')?.scrollIntoView({ behavior: 'smooth' })}
             className="btn-gold"
           >
-            Reserve Your Experience
+            <span className={lang === 'ka' ? 'font-geo normal-case tracking-normal' : ''}>{d.cta}</span>
           </button>
         </motion.div>
       </div>

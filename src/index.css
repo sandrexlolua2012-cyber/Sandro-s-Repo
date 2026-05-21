@@ -13,7 +13,7 @@
   }
 
   body {
-    background-color: #080808;
+    background-color: #0e0a1f;
     color: #f5f0e8;
     font-family: 'Inter', sans-serif;
     overflow-x: hidden;
@@ -25,7 +25,7 @@
   }
 
   ::-webkit-scrollbar { width: 3px; }
-  ::-webkit-scrollbar-track { background: #080808; }
+  ::-webkit-scrollbar-track { background: #0e0a1f; }
   ::-webkit-scrollbar-thumb { background: #c9a84c; border-radius: 2px; }
 }
 
