@@ -38,7 +38,7 @@ export default function Contact() {
   ]
 
   return (
-    <section id="contact" className="py-16 md:py-24 overflow-hidden" style={{ background: '#faf8f5' }}>
+    <section id="contact" className="py-24 md:py-36 overflow-hidden" style={{ background: '#faf8f5' }}>
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
         <motion.div
@@ -64,17 +64,17 @@ export default function Contact() {
               >
                 {item.href ? (
                   <a href={item.href} target="_blank" rel="noopener noreferrer"
-                    className="flex flex-col gap-4 p-7 glass hover:border-gold-700/30 transition-colors duration-500 group h-full"
+                    className="flex flex-col gap-5 p-9 glass hover:border-gold-700/30 transition-colors duration-500 group h-full"
                   >
                     <span className="text-gold-500 group-hover:text-gold-400 transition-colors duration-300">{item.icon}</span>
                     <div>
                       <p className={`text-[9px] tracking-widest uppercase text-gold-500 ${ss} mb-2`}>{item.label}</p>
-                      <p className={`${sf} text-lg text-charcoal-900 group-hover:text-gold-600 transition-colors duration-300`}>{item.value}</p>
+                      <p className={`${sf} text-xl text-charcoal-900 group-hover:text-gold-600 transition-colors duration-300`}>{item.value}</p>
                       <p className={`${ss} text-[12px] font-light mt-1`} style={{ color: '#6b5d4a' }}>{item.sub}</p>
                     </div>
                   </a>
                 ) : (
-                  <div className="flex flex-col gap-4 p-7 glass h-full">
+                  <div className="flex flex-col gap-5 p-9 glass h-full">
                     <span className="text-gold-500">{item.icon}</span>
                     <div>
                       <p className={`text-[9px] tracking-widest uppercase text-gold-500 ${ss} mb-2`}>{item.label}</p>
@@ -94,7 +94,7 @@ export default function Contact() {
             viewport={{ once: true }}
             transition={{ duration: 0.9 }}
             className="relative overflow-hidden"
-            style={{ height: '400px' }}
+            style={{ height: '500px'' }}
           >
             <iframe
               title="Van Goghi location"

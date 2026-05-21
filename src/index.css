@@ -78,7 +78,7 @@
 
 @layer components {
   .btn-gold {
-    @apply inline-flex items-center gap-3 px-10 py-4 border border-gold-500 text-gold-400 font-sans text-sm tracking-widest uppercase transition-all duration-500 relative overflow-hidden;
+    @apply inline-flex items-center gap-3 px-12 py-5 border border-gold-500 text-gold-400 font-sans text-sm tracking-widest uppercase transition-all duration-500 relative overflow-hidden;
   }
   .btn-gold::before {
     content: '';
@@ -94,11 +94,11 @@
   .btn-gold:hover { @apply text-charcoal-900; }
 
   .section-label {
-    @apply text-gold-500 text-xs tracking-widest3 uppercase font-sans font-light;
+    @apply text-gold-500 text-[11px] tracking-widest3 uppercase font-sans font-light;
   }
 
   .section-title {
-    @apply font-serif text-5xl md:text-6xl lg:text-7xl font-light leading-none text-charcoal-900;
+    @apply font-serif text-6xl md:text-7xl lg:text-8xl font-light leading-none text-charcoal-900;
   }
 }
 

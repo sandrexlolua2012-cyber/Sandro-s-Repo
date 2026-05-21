@@ -26,7 +26,7 @@ export default function Reservation() {
   const inputClass = `w-full bg-transparent border-b focus:border-gold-500 font-sans font-light text-[14px] py-3 px-0 outline-none transition-colors duration-300 placeholder:text-charcoal-900/30`
 
   return (
-    <section id="reservation" className="relative py-16 md:py-24 overflow-hidden" style={{ background: '#ffffff' }}>
+    <section id="reservation" className="relative py-24 md:py-36 overflow-hidden" style={{ background: '#ffffff' }}>
       <div className="max-w-5xl mx-auto px-6">
         {/* Header */}
         <motion.div

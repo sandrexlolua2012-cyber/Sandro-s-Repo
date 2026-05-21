@@ -77,7 +77,7 @@ export default function Reviews() {
   const ss = lang === 'ka' ? 'font-geo' : 'font-sans'
 
   return (
-    <section id="reviews" className="py-16 md:py-24 overflow-hidden" style={{ background: '#fdf6ec' }}>
+    <section id="reviews" className="py-24 md:py-36 overflow-hidden" style={{ background: '#fdf6ec' }}>
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
         <motion.div
@@ -91,7 +91,7 @@ export default function Reviews() {
 
           {/* Rating summary */}
           <div className="flex flex-col items-center gap-2">
-            <span className="font-serif text-7xl font-light text-gradient-gold">4.8</span>
+            <span className="font-serif text-9xl font-light text-gradient-gold">4.8</span>
             <Stars count={5} />
             <span className={`text-[13px] ${ss} font-light`} style={{ color: '#8a7a68' }}>{rv.count}</span>
           </div>
@@ -107,7 +107,7 @@ export default function Reviews() {
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: (i % 3) * 0.12 }}
               whileHover={{ y: -4 }}
-              className="glass flex flex-col gap-5 p-7 relative overflow-hidden group hover:border-gold-700/20 transition-colors duration-500"
+              className="glass flex flex-col gap-6 p-9 relative overflow-hidden group hover:border-gold-700/20 transition-colors duration-500"
             >
               {/* Quote mark */}
               <span className="absolute top-4 right-6 font-serif text-7xl leading-none select-none text-gold-500/20 group-hover:text-gold-500/30 transition-colors duration-500">"</span>
@@ -116,7 +116,7 @@ export default function Reviews() {
               <Stars count={r.rating} />
 
               {/* Text — always English per spec */}
-              <p className="font-sans font-light text-[13px] leading-7 relative z-10 flex-1" style={{ color: '#4a3d2e' }}>
+              <p className="font-sans font-light text-[15px] leading-8 relative z-10 flex-1" style={{ color: '#4a3d2e' }}>
                 "{r.text}"
               </p>
 
@@ -126,7 +126,7 @@ export default function Reviews() {
               {/* Author */}
               <div className="flex items-center gap-4">
                 <div
-                  className="w-10 h-10 rounded-full flex items-center justify-center text-[11px] font-sans font-medium text-charcoal-900 flex-shrink-0"
+                  className="w-12 h-12 rounded-full flex items-center justify-center text-[11px] font-sans font-medium text-charcoal-900 flex-shrink-0"
                   style={{ background: r.color }}
                 >
                   {r.initials}

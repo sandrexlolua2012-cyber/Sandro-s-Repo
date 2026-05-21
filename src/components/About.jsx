@@ -13,7 +13,7 @@ export default function About() {
   const ss = lang === 'ka' ? 'font-geo' : 'font-sans'
 
   return (
-    <section id="about" className="relative py-16 md:py-24 overflow-hidden" style={{ background: '#faf8f5' }}>
+    <section id="about" className="relative py-24 md:py-36 overflow-hidden" style={{ background: '#faf8f5' }}>
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
 
@@ -37,11 +37,11 @@ export default function About() {
                 <motion.div
                   key={stat.label}
                   variants={fadeUp} custom={i * 0.2 + 0.3}
-                  className="glass p-6 flex flex-col gap-1"
+                  className="glass p-8 flex flex-col gap-2"
                 >
-                  <span className={`text-[9px] tracking-widest uppercase text-gold-500 ${ss}`}>{stat.label}</span>
-                  <span className={`${sf} text-3xl font-light text-charcoal-900`}>{stat.value}</span>
-                  <span className={`text-[10px] ${ss}`} style={{ color: '#8a7a68' }}>{stat.sub}</span>
+                  <span className={`text-[10px] tracking-widest uppercase text-gold-500 ${ss}`}>{stat.label}</span>
+                  <span className={`${sf} text-4xl font-light text-charcoal-900`}>{stat.value}</span>
+                  <span className={`text-[12px] ${ss}`} style={{ color: '#8a7a68' }}>{stat.sub}</span>
                 </motion.div>
               ))}
             </div>
@@ -61,22 +61,22 @@ export default function About() {
 
             <motion.div variants={fadeUp} custom={2} className="divider-gold w-16" />
 
-            <motion.p variants={fadeUp} custom={3} className={`${ss} font-light leading-8 text-[15px]`} style={{ color: '#4a3d2e' }}>
+            <motion.p variants={fadeUp} custom={3} className={`${ss} font-light leading-9 text-[16px]`} style={{ color: '#4a3d2e' }}>
               {ab.body1}
             </motion.p>
 
-            <motion.p variants={fadeUp} custom={4} className={`${ss} font-light leading-8 text-[15px]`} style={{ color: '#8a7a68' }}>
+            <motion.p variants={fadeUp} custom={4} className={`${ss} font-light leading-9 text-[16px]`} style={{ color: '#8a7a68' }}>
               {ab.body2}
             </motion.p>
 
             {/* Pillars */}
-            <div className="flex flex-col gap-6 mt-4">
+            <div className="flex flex-col gap-8 mt-4">
               {ab.pillars.map((p, i) => (
                 <motion.div key={p.num} variants={fadeUp} custom={i * 0.15 + 0.6} className="flex gap-6 items-start">
-                  <span className="font-serif text-5xl font-light text-gold-700 leading-none select-none mt-1">{p.num}</span>
+                  <span className="font-serif text-6xl font-light text-gold-700 leading-none select-none mt-1">{p.num}</span>
                   <div>
-                    <p className={`${sf} text-lg text-charcoal-900 mb-1`}>{p.title}</p>
-                    <p className={`${ss} text-[13px] font-light leading-relaxed`} style={{ color: '#8a7a68' }}>{p.text}</p>
+                    <p className={`${sf} text-xl text-charcoal-900 mb-2`}>{p.title}</p>
+                    <p className={`${ss} text-[14px] font-light leading-relaxed`} style={{ color: '#8a7a68' }}>{p.text}</p>
                   </div>
                 </motion.div>
               ))}

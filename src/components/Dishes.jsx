@@ -8,7 +8,7 @@ export default function Dishes() {
   const ss = lang === 'ka' ? 'font-geo' : 'font-sans'
 
   return (
-    <section id="menu" className="py-16 md:py-24 overflow-hidden" style={{ background: '#ffffff' }}>
+    <section id="menu" className="py-24 md:py-36 overflow-hidden" style={{ background: '#ffffff' }}>
       <div className="max-w-6xl mx-auto px-6">
         {/* Header */}
         <motion.div
@@ -33,7 +33,7 @@ export default function Dishes() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: i * 0.06 }}
-              className="group relative flex items-start gap-6 md:gap-12 py-10 border-b last:border-0"
+              className="group relative flex items-start gap-6 md:gap-14 py-14 border-b last:border-0"
               style={{ borderColor: 'rgba(26,21,16,0.08)' }}
             >
               {/* Left accent bar on hover */}
@@ -58,21 +58,21 @@ export default function Dishes() {
                 >
                   {dish.tag}
                 </span>
-                <h3 className={`${sf} text-3xl md:text-4xl font-light text-charcoal-900 group-hover:text-gold-600 transition-colors duration-500 mb-1 leading-tight`}>
+                <h3 className={`${sf} text-4xl md:text-5xl font-light text-charcoal-900 group-hover:text-gold-600 transition-colors duration-500 mb-1 leading-tight`}>
                   {dish.name}
                 </h3>
                 <div
                   className="h-px w-10 mb-4 group-hover:w-28 transition-all duration-700"
                   style={{ background: `${dish.accent}70` }}
                 />
-                <p className={`${ss} text-[13px] font-light leading-relaxed max-w-xl`} style={{ color: '#6b5d4a' }}>
+                <p className={`${ss} text-[15px] font-light leading-relaxed max-w-xl`} style={{ color: '#6b5d4a' }}>
                   {dish.desc}
                 </p>
               </div>
 
               {/* Picture frame */}
               <div
-                className="hidden md:flex shrink-0 w-28 h-28 self-center items-center justify-center"
+                className="hidden md:flex shrink-0 w-52 h-52 self-center items-center justify-center"
                 style={{ border: `1px solid ${dish.accent}30`, background: `${dish.accent}05` }}
               >
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" style={{ color: `${dish.accent}50` }}>
