@@ -67,6 +67,16 @@ export default function Experience() {
                   </span>
                 ))}
               </div>
+
+              {/* Picture frame */}
+              <div
+                className="relative z-10 w-full flex items-center justify-center mt-2"
+                style={{ height: '140px', border: '1px solid rgba(201,168,76,0.18)', background: 'rgba(201,168,76,0.03)' }}
+              >
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="0.8" strokeLinecap="round" style={{ color: 'rgba(201,168,76,0.35)' }}>
+                  <rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>
+                </svg>
+              </div>
             </motion.div>
           ))}
         </div>

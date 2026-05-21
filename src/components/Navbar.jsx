@@ -23,19 +23,21 @@ export default function Navbar() {
   const navLabels = [tr.nav.about, tr.nav.menu, tr.nav.experience, tr.nav.reservation]
   const sf = lang === 'ka' ? 'font-geo' : 'font-serif'
 
+  const langLabels = { en: '🇬🇧 EN', ka: '🇬🇪 KA', ru: '🇷🇺 RU', uk: '🇺🇦 UK' }
+
   const LangToggle = () => (
-    <div className="flex items-center p-1 rounded-full border border-gold-700/30">
-      {['en', 'ka'].map(l => (
+    <div className="flex items-center p-0.5 rounded-full border border-gold-700/30 gap-px">
+      {['en', 'ka', 'ru', 'uk'].map(l => (
         <button
           key={l}
           onClick={() => setLang(l)}
-          className={`px-3 py-1 rounded-full text-[10px] font-sans uppercase tracking-widest transition-all duration-300 ${
+          className={`px-2 py-1 rounded-full text-[9px] font-sans uppercase tracking-wider transition-all duration-300 ${
             lang === l
               ? 'bg-gold-500 text-charcoal-900 font-medium'
               : 'text-cream-400 hover:text-gold-400'
           }`}
         >
-          {l === 'en' ? '🇬🇧 EN' : '🇬🇪 KA'}
+          {langLabels[l]}
         </button>
       ))}
     </div>

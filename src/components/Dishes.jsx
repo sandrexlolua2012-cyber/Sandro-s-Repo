@@ -69,6 +69,16 @@ export default function Dishes() {
                   {dish.desc}
                 </p>
               </div>
+
+              {/* Picture frame */}
+              <div
+                className="hidden md:flex shrink-0 w-28 h-28 self-center items-center justify-center"
+                style={{ border: `1px solid ${dish.accent}30`, background: `${dish.accent}05` }}
+              >
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" style={{ color: `${dish.accent}50` }}>
+                  <rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>
+                </svg>
+              </div>
             </motion.div>
           ))}
         </div>
