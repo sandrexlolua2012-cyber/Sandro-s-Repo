@@ -13,13 +13,9 @@ export default function About() {
   const ss = lang === 'ka' ? 'font-geo' : 'font-sans'
 
   return (
-    <section id="about" className="relative py-32 md:py-44 overflow-hidden" style={{ background: '#071510' }}>
-      {/* Background accent */}
-      <div className="absolute top-0 right-0 w-1/2 h-full pointer-events-none"
-        style={{ background: 'radial-gradient(ellipse at top right, rgba(201,168,76,0.04) 0%, transparent 60%)' }} />
-
+    <section id="about" className="relative py-16 md:py-24 overflow-hidden" style={{ background: '#faf8f5' }}>
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid lg:grid-cols-2 gap-20 items-center">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
 
           {/* Left — decorative */}
           <motion.div
@@ -44,8 +40,8 @@ export default function About() {
                   className="glass p-6 flex flex-col gap-1"
                 >
                   <span className={`text-[9px] tracking-widest uppercase text-gold-500 ${ss}`}>{stat.label}</span>
-                  <span className={`${sf} text-3xl text-cream-100 font-light`}>{stat.value}</span>
-                  <span className={`text-[10px] text-cream-400 ${ss}`}>{stat.sub}</span>
+                  <span className={`${sf} text-3xl font-light text-charcoal-900`}>{stat.value}</span>
+                  <span className={`text-[10px] ${ss}`} style={{ color: '#8a7a68' }}>{stat.sub}</span>
                 </motion.div>
               ))}
             </div>
@@ -65,11 +61,11 @@ export default function About() {
 
             <motion.div variants={fadeUp} custom={2} className="divider-gold w-16" />
 
-            <motion.p variants={fadeUp} custom={3} className={`${ss} font-light text-cream-300 leading-8 text-[15px]`}>
+            <motion.p variants={fadeUp} custom={3} className={`${ss} font-light leading-8 text-[15px]`} style={{ color: '#4a3d2e' }}>
               {ab.body1}
             </motion.p>
 
-            <motion.p variants={fadeUp} custom={4} className={`${ss} font-light text-cream-400 leading-8 text-[15px]`}>
+            <motion.p variants={fadeUp} custom={4} className={`${ss} font-light leading-8 text-[15px]`} style={{ color: '#8a7a68' }}>
               {ab.body2}
             </motion.p>
 
@@ -79,8 +75,8 @@ export default function About() {
                 <motion.div key={p.num} variants={fadeUp} custom={i * 0.15 + 0.6} className="flex gap-6 items-start">
                   <span className="font-serif text-5xl font-light text-gold-700 leading-none select-none mt-1">{p.num}</span>
                   <div>
-                    <p className={`${sf} text-lg text-cream-100 mb-1`}>{p.title}</p>
-                    <p className={`${ss} text-[13px] text-cream-400 font-light leading-relaxed`}>{p.text}</p>
+                    <p className={`${sf} text-lg text-charcoal-900 mb-1`}>{p.title}</p>
+                    <p className={`${ss} text-[13px] font-light leading-relaxed`} style={{ color: '#8a7a68' }}>{p.text}</p>
                   </div>
                 </motion.div>
               ))}

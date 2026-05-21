@@ -47,7 +47,7 @@ function MarqueeStrip() {
   const { tr } = useLang()
   const doubled = [...tr.marquee, ...tr.marquee]
   return (
-    <div className="border-y border-gold-700/20 py-4 overflow-hidden" style={{ background: '#120a04' }}>
+    <div className="border-y border-gold-700/20 py-4 overflow-hidden" style={{ background: '#1a1510' }}>
       <div className="marquee-track">
         {doubled.map((item, i) => (
           <span key={i} className="inline-flex items-center gap-8 mx-8 text-[10px] tracking-widest3 uppercase font-sans text-gold-500/40">

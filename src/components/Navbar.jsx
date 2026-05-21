@@ -48,14 +48,13 @@ export default function Navbar() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 1, ease: [0.4, 0, 0.2, 1] }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${
-          scrolled ? 'backdrop-blur-xl border-b border-white/5' : 'bg-transparent'
+          scrolled ? 'bg-white/95 backdrop-blur-xl shadow-sm border-b border-gold-700/10' : 'bg-transparent'
         }`}
-        style={scrolled ? { background: 'rgba(12,8,32,0.92)' } : {}}
       >
         <div className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
           {/* Logo */}
           <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="flex flex-col items-start gap-0.5">
-            <span className="font-serif text-xl font-light tracking-widest2 text-cream-100">VAN GOGHI</span>
+            <span className={`font-serif text-xl font-light tracking-widest2 transition-colors duration-500 ${scrolled ? 'text-charcoal-900' : 'text-cream-100'}`}>VAN GOGHI</span>
             <span className="text-[9px] tracking-widest3 text-gold-500 uppercase font-sans font-light">Tbilisi · Georgia</span>
           </button>
 
@@ -65,7 +64,7 @@ export default function Navbar() {
               <li key={id}>
                 <button
                   onClick={() => scrollTo(id)}
-                  className={`text-[11px] tracking-widest uppercase font-sans font-light text-cream-300 hover:text-gold-400 transition-colors duration-300 relative group ${lang === 'ka' ? 'font-geo normal-case tracking-normal text-[13px]' : ''}`}
+                  className={`text-[11px] tracking-widest uppercase font-sans font-light transition-colors duration-300 relative group ${lang === 'ka' ? 'font-geo normal-case tracking-normal text-[13px]' : ''} ${scrolled ? 'text-charcoal-700 hover:text-gold-500' : 'text-cream-300 hover:text-gold-400'}`}
                 >
                   {navLabels[idx]}
                   <span className="absolute -bottom-1 left-0 w-0 h-px bg-gold-500 group-hover:w-full transition-all duration-300" />
@@ -91,9 +90,9 @@ export default function Navbar() {
             className="md:hidden flex flex-col gap-1.5 p-2"
             aria-label="Menu"
           >
-            <motion.span animate={{ rotate: menuOpen ? 45 : 0, y: menuOpen ? 8 : 0 }} className="block w-6 h-px bg-cream-200 origin-center transition-all" />
-            <motion.span animate={{ opacity: menuOpen ? 0 : 1 }} className="block w-6 h-px bg-cream-200" />
-            <motion.span animate={{ rotate: menuOpen ? -45 : 0, y: menuOpen ? -8 : 0 }} className="block w-6 h-px bg-cream-200 origin-center" />
+            <motion.span animate={{ rotate: menuOpen ? 45 : 0, y: menuOpen ? 8 : 0 }} className={`block w-6 h-px origin-center transition-all ${scrolled ? 'bg-charcoal-900' : 'bg-cream-200'}`} />
+            <motion.span animate={{ opacity: menuOpen ? 0 : 1 }} className={`block w-6 h-px ${scrolled ? 'bg-charcoal-900' : 'bg-cream-200'}`} />
+            <motion.span animate={{ rotate: menuOpen ? -45 : 0, y: menuOpen ? -8 : 0 }} className={`block w-6 h-px origin-center ${scrolled ? 'bg-charcoal-900' : 'bg-cream-200'}`} />
           </button>
         </div>
       </motion.nav>

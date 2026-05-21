@@ -8,18 +8,18 @@ export default function Dishes() {
   const ss = lang === 'ka' ? 'font-geo' : 'font-sans'
 
   return (
-    <section id="menu" className="py-32 md:py-44 overflow-hidden" style={{ background: '#160508' }}>
+    <section id="menu" className="py-16 md:py-24 overflow-hidden" style={{ background: '#ffffff' }}>
       <div className="max-w-6xl mx-auto px-6">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }} transition={{ duration: 0.9 }}
-          className="text-center mb-24"
+          className="text-center mb-14"
         >
           <span className={`section-label ${ss}`}>{d.label}</span>
           <h2 className={`section-title mt-4 mb-2 ${sf}`}>{d.heading}</h2>
           <div className="divider-gold w-24 mx-auto" />
-          <p className={`${ss} font-light text-cream-400 text-[14px] mt-6 max-w-md mx-auto leading-relaxed`}>
+          <p className={`${ss} font-light text-[14px] mt-6 max-w-md mx-auto leading-relaxed`} style={{ color: '#8a7a68' }}>
             {d.subtitle}
           </p>
         </motion.div>
@@ -33,7 +33,8 @@ export default function Dishes() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: i * 0.06 }}
-              className="group relative flex items-start gap-6 md:gap-12 py-10 border-b border-white/[0.06] last:border-0"
+              className="group relative flex items-start gap-6 md:gap-12 py-10 border-b last:border-0"
+              style={{ borderColor: 'rgba(26,21,16,0.08)' }}
             >
               {/* Left accent bar on hover */}
               <div
@@ -44,7 +45,7 @@ export default function Dishes() {
               {/* Number */}
               <span
                 className="hidden md:block font-serif text-5xl font-light leading-none select-none w-16 shrink-0 mt-2"
-                style={{ color: 'rgba(201,168,76,0.15)' }}
+                style={{ color: 'rgba(201,168,76,0.25)' }}
               >
                 {String(i + 1).padStart(2, '0')}
               </span>
@@ -57,14 +58,14 @@ export default function Dishes() {
                 >
                   {dish.tag}
                 </span>
-                <h3 className={`${sf} text-3xl md:text-4xl font-light text-cream-100 group-hover:text-gold-300 transition-colors duration-500 mb-1 leading-tight`}>
+                <h3 className={`${sf} text-3xl md:text-4xl font-light text-charcoal-900 group-hover:text-gold-600 transition-colors duration-500 mb-1 leading-tight`}>
                   {dish.name}
                 </h3>
                 <div
                   className="h-px w-10 mb-4 group-hover:w-28 transition-all duration-700"
                   style={{ background: `${dish.accent}70` }}
                 />
-                <p className={`${ss} text-[13px] text-cream-400 font-light leading-relaxed max-w-xl`}>
+                <p className={`${ss} text-[13px] font-light leading-relaxed max-w-xl`} style={{ color: '#6b5d4a' }}>
                   {dish.desc}
                 </p>
               </div>
@@ -76,7 +77,7 @@ export default function Dishes() {
         <motion.div
           initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.3 }}
-          className="text-center mt-20"
+          className="text-center mt-12"
         >
           <button
             onClick={() => document.getElementById('reservation')?.scrollIntoView({ behavior: 'smooth' })}
