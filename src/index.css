@@ -95,3 +95,14 @@
     @apply font-serif text-5xl md:text-6xl lg:text-7xl font-light leading-none text-cream-100;
   }
 }
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.marquee-track {
+  display: inline-flex;
+  white-space: nowrap;
+  animation: marquee 35s linear infinite;
+  will-change: transform;
+}

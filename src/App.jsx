@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
+import ChefQuote from './components/ChefQuote'
 import About from './components/About'
 import Dishes from './components/Dishes'
 import Experience from './components/Experience'
@@ -59,6 +60,16 @@ export default function App() {
           <Navbar />
           <main>
             <Hero />
+            <div className="bg-charcoal-800 border-y border-gold-700/20 py-4 overflow-hidden">
+              <div className="marquee-track">
+                {['Fine Dining', 'Georgian Fusion', 'Tbilisi · Georgia', 'Est. 2022', '60 Covers', 'Private Events', 'Natural Wine', 'Tasting Menu', 'Open Daily', 'Fine Dining', 'Georgian Fusion', 'Tbilisi · Georgia', 'Est. 2022', '60 Covers', 'Private Events', 'Natural Wine', 'Tasting Menu', 'Open Daily'].map((item, i) => (
+                  <span key={i} className="inline-flex items-center gap-8 mx-8 text-[10px] tracking-widest3 uppercase font-sans text-gold-500/40">
+                    {item}<span className="text-gold-700/30">—</span>
+                  </span>
+                ))}
+              </div>
+            </div>
+            <ChefQuote />
             <About />
             <Dishes />
             <Experience />

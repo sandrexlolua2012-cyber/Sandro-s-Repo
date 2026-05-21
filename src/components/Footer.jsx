@@ -34,7 +34,6 @@ const navLinks = [
   { label: 'About', id: 'about' },
   { label: 'Menu', id: 'menu' },
   { label: 'Experience', id: 'experience' },
-  { label: 'Gallery', id: 'gallery' },
   { label: 'Reservation', id: 'reservation' },
   { label: 'Contact', id: 'contact' },
 ]
